@@ -1,0 +1,107 @@
+.title{
+    position: relative;
+    max-height: 100vh;
+    overflow: hidden;
+    &__text{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        letter-spacing: 0.4em;
+        text-align: center;
+        color: #FAFAFA;
+        font-size: 28px;
+        line-height: 28px;
+        & div:first-child{
+            font-size: 70px;
+            line-height: 70px;
+            font-weight: bold;
+            text-transform: uppercase;
+            @include respondto(xs, sm){
+                font-size: 40px;
+                line-height: 40px;
+                letter-spacing: 0.3em;
+            }
+        }
+        & div{
+            @include respondto(xs, sm){
+                font-size: 18px;
+                line-height: 18px;
+                letter-spacing: 0.2em;
+            }
+        }
+    }
+}
+.video-bg{
+    position: relative;
+    &__overlay{
+        background-color: rgba(250, 250, 250, .3);
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+    @include respondto(xs, sm){
+        height: 100vh
+    }
+}
+#about{
+    min-height: 650px;
+    margin-top: -5px;
+    & .row{
+        position: absolute;
+        top: -100px;left: 0;
+        width: 100%;
+        @include respondto(xs, sm){
+            position: unset;
+            top: 0px;left: 0;
+        }
+    }
+    & p{
+        font-size: 16px;
+        margin: 10px 0;
+    }
+}
+#courses{
+    padding-bottom: 40px;
+}
+.course-card{
+    width: 100%;
+    text-align: center;
+    & hr{
+        width: 80%;
+        height: 4px;
+        background-color: rgb(36,220,157);
+        margin: 20px auto;
+    }
+    &__title{
+        font-weight: bold;
+        font-size: 24px;
+    }
+    &__price{
+        font-weight: bold;
+        font-size: 24px;
+    }
+}
+.fi-block{
+    background-color: #24DC9D;
+    color: white;
+    display: flex;
+    font-size: 40px;
+    line-height: 40px;
+    font-weight: 400;
+    padding: 30px 10px;
+    @include respondto(xs, sm){
+        line-height: 28px;
+        font-size: 28px;
+        padding: 15px;
+    }
+}
+
+.about-block{
+    max-width: 456px;
+    @include respondto(xs, sm){
+        max-width: 100%;
+    }
+}
