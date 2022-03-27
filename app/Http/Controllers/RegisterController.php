@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+use App\Http\Requests\SignUpRequest;
+
 class RegisterController extends Controller
 {
     public function create()
@@ -12,7 +14,7 @@ class RegisterController extends Controller
         return view('register.create');
     }
 
-    public function store(Request $request)
+    public function store(SignUpRequest $request)
     {
         $validateFields = $request->validate([
             'email' => 'required|email',
@@ -21,7 +23,7 @@ class RegisterController extends Controller
         ]);
 
         if(User::where('email', $validateFields['email'])->exists()){
-            return response()->json(['message' => 'Пользователь с таким email уже существует']);
+            return redirect(route('signup_form'))->withErrors(['message' => 'Пользователь с такой почтой уже существует']);
         }
 
         $user = User::create($validateFields);
@@ -29,12 +31,11 @@ class RegisterController extends Controller
         if($user){
             auth()->login($user);
 
-            return response()->json(['success' => 1]);
+            return redirect(route('account'));
         }
 
 
-        return response()->json(['message' => 'Ошибка регистрации. Попробуйте позже']);
-        // return redirect(route('user.account'));
+        return redirect(route('signup_form'))->withErrors(['message' => 'Ошибка регистрации']);
 
     }
 }

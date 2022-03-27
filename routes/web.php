@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
-use App\Http\Controllers\CatalogController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,16 +29,25 @@ Route::get('/fail', function () {
     return view('fail');
 });
 
-Route::get('/register', [RegisterController::class, 'create']);
-Route::get('/auth', [SessionsController::class, 'create']);
+Route::get('/signup', function () {
+    if(Auth::check()){
+        return view('account');
+    }
+    return view('signup');
+})->name('signup_form');
+
+Route::get('/login', function () {
+    if(Auth::check()){
+        return view('account');
+    }
+    return view('login');
+})->name('login_form');
 
 Route::post('/signup', [RegisterController::class, 'store']);
 Route::post('/login', [SessionsController::class, 'store']);
 
-Route::get('/cabinet', [CatalogController::class, 'index'])->middleware('auth');
-
-Route::name('user.')->group(function(){
+Route::prefix('user')->group(function(){
     Route::view('/account', 'account')->middleware('auth')->name('account');
 });
 
-Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
+Route::get('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
