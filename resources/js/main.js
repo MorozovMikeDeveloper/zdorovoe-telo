@@ -65,6 +65,25 @@ $(() => {
 
     $('.header-menu__link:not(.header-menu__link--auth)').on('click', handler)
     $('.header-menu__link--auth').on('click', openModal)
+
+    $('#signup-btn').on('click', function (e) {
+        e.preventDefault()
+        $.ajax({
+            url:     '/signup',
+            type:     "POST",
+            data: $("#signup-form").serialize(),
+            success: function(response) {
+               if(response.success){
+                   $('.modal-alert').empty()
+                   $('.modal-alert').html('<div class="alert alert-success">Вы успешно зарегистрировались. Перенаправляем вас в кабинет...</div>')
+               }
+            },
+            error: function(response) {
+                $('.modal-alert').empty()
+                $('.modal-alert').html('<div class="alert alert-danger">' + response.responseJSON.message + '</div>')
+            }
+         });
+    })
 })
 
 $(window).on("scroll", function() {

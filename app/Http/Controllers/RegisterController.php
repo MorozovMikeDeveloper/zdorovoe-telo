@@ -12,12 +12,18 @@ class RegisterController extends Controller
         return view('register.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
         $attributes = request();
 
-        auth()->login(User::create($attributes));
+        $validateFields = $request->validate([
+            'email' => 'required|email',
+            'password' => 'required|min:6',
+        ]);
 
-        return redirect('/')->with('success', 'Аккаунт успешно зарегистрирован!');
+        // auth()->login(User::create($attributes));
+        // return redirect(route('user.account'));
+
+        return response()->json(['success' => 1]);
     }
 }

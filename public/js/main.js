@@ -3284,6 +3284,24 @@ jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
 
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').on('click', handler);
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link--auth').on('click', openModal);
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#signup-btn').on('click', function (e) {
+    e.preventDefault();
+    jquery__WEBPACK_IMPORTED_MODULE_1___default().ajax({
+      url: '/signup',
+      type: "POST",
+      data: jquery__WEBPACK_IMPORTED_MODULE_1___default()("#signup-form").serialize(),
+      success: function success(response) {
+        if (response.success) {
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').empty();
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').html('<div class="alert alert-success">Вы успешно зарегистрировались. Перенаправляем вас в кабинет...</div>');
+        }
+      },
+      error: function error(response) {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').empty();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').html('<div class="alert alert-danger">' + response.responseJSON.message + '</div>');
+      }
+    });
+  });
 });
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).on("scroll", function () {
   if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).scrollTop() > 40) {

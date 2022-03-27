@@ -20,10 +20,21 @@ Route::get('/', function () {
     return view('home');
 });
 
-Route::get('register', [RegisterController::class, 'create'])->middleware('guest');
-Route::post('register', [RegisterController::class, 'store'])->middleware('guest');
+Route::get('/success', function () {
+    return view('success');
+});
 
-Route::get('login', [SessionsController::class, 'create'])->middleware('guest');
-Route::post('login', [SessionsController::class, 'store'])->middleware('guest');
+Route::get('/fail', function () {
+    return view('fail');
+});
 
-Route::post('logout', [SessionsController::class, 'destroy'])->middleware('auth');
+
+Route::post('/signup', [RegisterController::class, 'store']);
+Route::post('/login', [SessionsController::class, 'store']);
+
+Route::name('user.')->group(function(){
+    Route::view('/account', 'account')->middleware('auth')->name('account');
+});
+
+
+Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
