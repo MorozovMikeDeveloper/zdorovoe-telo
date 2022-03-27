@@ -28,13 +28,11 @@ Route::get('/fail', function () {
     return view('fail');
 });
 
-
 Route::post('/signup', [RegisterController::class, 'store']);
 Route::post('/login', [SessionsController::class, 'store']);
 
 Route::name('user.')->group(function(){
     Route::view('/account', 'account')->middleware('auth')->name('account');
 });
-
 
 Route::post('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
