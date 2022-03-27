@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\CatalogController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,6 +34,8 @@ Route::get('/auth', [SessionsController::class, 'create']);
 
 Route::post('/signup', [RegisterController::class, 'store']);
 Route::post('/login', [SessionsController::class, 'store']);
+
+Route::get('/cabinet', [CatalogController::class, 'index'])->middleware('auth');
 
 Route::name('user.')->group(function(){
     Route::view('/account', 'account')->middleware('auth')->name('account');

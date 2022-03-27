@@ -7,8 +7,10 @@ use App\Models\Course;
 
 class CatalogController extends Controller
 {
-    public function store()
+    public function index()
     {
-        return Course::all();
+        return view('cabinet', [
+            'courses' => Course::all(),
+        ]);
     }
 }
