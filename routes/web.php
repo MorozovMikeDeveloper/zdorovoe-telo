@@ -28,6 +28,9 @@ Route::get('/fail', function () {
     return view('fail');
 });
 
+Route::get('/register', [RegisterController::class, 'create']);
+Route::get('/auth', [SessionsController::class, 'create']);
+
 Route::post('/signup', [RegisterController::class, 'store']);
 Route::post('/login', [SessionsController::class, 'store']);
 
