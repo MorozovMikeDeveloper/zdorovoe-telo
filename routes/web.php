@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
+use App\Http\Controllers\CatalogController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -49,5 +50,7 @@ Route::post('/login', [SessionsController::class, 'store']);
 Route::prefix('user')->group(function(){
     Route::view('/account', 'account')->middleware('auth')->name('account');
 });
+
+Route::get('cabinet', [CatalogController::class, 'index']);
 
 Route::get('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
