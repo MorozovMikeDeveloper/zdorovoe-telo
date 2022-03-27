@@ -19,9 +19,8 @@
     z-index: 2000;
     height: fit-content;
     min-height: 40px;
-    padding: 20px;
 
-    &-body{
+    &-wraper{
         position: relative;
         & .close-modal{
             position: absolute;
@@ -37,6 +36,7 @@
             }
         }
     }
+
 
     & .separator {
         margin: 20px 0;
@@ -76,60 +76,9 @@
         transform: translate(-50%, 0);
         opacity: 1;
         visibility: visible;
+        max-height: 90%;
     }
     .col-6{
         border: 1px solid rgba(195, 195, 195, 0.14)
-    }
-    .wallet-btn{
-        transition: background-color 0.2s ease-in-out 0s;
-        width: 100%;
-        display: flex;
-        flex-direction: column;
-        -webkit-box-pack: center;
-        justify-content: center;
-        -webkit-box-align: center;
-        align-items: center;
-        background-color: rgb(255, 255, 255);
-        border-radius: 12px;
-        padding: 24px 16px;
-        cursor: pointer;
-        min-width: 205px;
-        @include respond(530){
-            padding: 10px 8px;
-        }
-        &-wrap{
-            flex: 1;
-        }
-        &:hover{
-            background-color: rgba(195, 195, 195, 0.14);
-        }
-        &__title{
-            width: 100%;
-            font-size: 24px;
-            text-align: center;
-            font-weight: 500;
-            margin-top: 0.5em;
-            color: rgb(12, 12, 13);
-            @include respond(530){
-                font-size: 18px;
-            }
-        }
-        &__description{
-            width: 100%;
-            text-align: center;
-            font-size: 18px;
-            font-weight: 300;
-            margin: 0.333em 0px;
-            color: rgb(169, 169, 188);
-            @include respond(530){
-                font-size: 14px;
-            }
-        }
-        & svg{
-            width: 80px;
-            @include respond(530){
-                width: 50px;
-            }
-        }
     }
 }

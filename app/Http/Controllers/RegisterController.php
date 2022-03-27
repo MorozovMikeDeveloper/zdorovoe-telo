@@ -14,16 +14,28 @@ class RegisterController extends Controller
 
     public function store(Request $request)
     {
-        $attributes = request();
-
         $validateFields = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
+            'name' => 'required'
         ]);
 
-        // auth()->login(User::create($attributes));
+        if(User::where('email', $validateFields['email'])->exists()){
+            http_response_code(400);
+            return response()->json(['message' => 'Пользователь с таким email уже существует']);
+        }
+
+        $user = User::create($validateFields);
+
+        if($user){
+            auth()->login($user);
+
+            return response()->json(['success' => 1]);
+        }
+
+
+        return response()->json(['message' => 'Ошибка регистрации. Попробуйте позже']);
         // return redirect(route('user.account'));
 
-        return response()->json(['success' => 1]);
     }
 }

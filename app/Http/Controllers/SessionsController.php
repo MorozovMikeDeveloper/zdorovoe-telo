@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class SessionsController extends Controller
 {
@@ -11,12 +12,19 @@ class SessionsController extends Controller
         return view('sessions.create');
     }
 
-    public function store()
+    public function store(Request $request)
     {
-        $attributes = request();
         session()->regenerate();
 
-        return redirect('/')->with('success', 'Добро пожаловать!');
+        $formFields = $request->only(['email', 'password']);
+
+        if(Auth::attempt($formFields)){
+            // return redirect(route('user.account'));
+            return response()->json(['success' => 1]);
+        }
+        http_response_code(400);
+        return response()->json(['message' => 'Email или пароль не верны']);
+        // return redirect('/')->with('success', 'Добро пожаловать!');
     }
 
     public function destroy()

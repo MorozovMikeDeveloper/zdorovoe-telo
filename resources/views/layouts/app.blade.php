@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Document</title>
     <link href="css/main.css" rel="stylesheet">
 </head>
@@ -39,10 +40,11 @@
     <div class="header__menu--mobile"><a class="header-menu__link" href="#" data-page="home-page">Главная</a> <a
             class="header-menu__link" href="#" data-page="about-page">Обо мне</a> <a class="header-menu__link" href="#"
             data-page="course-page">Курсы</a> <a class="header-menu__link" href="#" data-page="reviews-page">Отзывы</a>
-        <a class="header-menu__link header-menu__link--auth" href="#" data-page="contact-page">Кабинет</a></div>
+        <a class="header-menu__link header-menu__link--auth" href="#" data-page="contact-page">Кабинет</a>
+    </div>
     <div class="modal">
-        <div class="d-flex flex-column w-100 align-items-center modal-body">
-            <div class="modal-alert"></div>
+        <div class="modal-wraper">
+
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
                 class="bi bi-x-lg close-modal" viewBox="0 0 16 16">
                 <path fill-rule="evenodd"
@@ -50,36 +52,43 @@
                 <path fill-rule="evenodd"
                     d="M2.146 2.146a.5.5 0 0 0 0 .708l11 11a.5.5 0 0 0 .708-.708l-11-11a.5.5 0 0 0-.708 0Z" />
             </svg>
-            <div class="signup-block">
-                <form action="/signup" method="post" id="signup-form">
-                @csrf
-                    <h3>Регистрация</h3>
-                    <div class="form-group my-2">
-                        <input id="my-input" class="form-control" type="text" name="email" placeholder="Ваш email">
-                    </div>
-                    <div class="form-group my-2">
-                        <input id="my-input" class="form-control" type="text" name="password" placeholder="Пароль">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary w-100" style="padding:8px 10px" id="signup-btn">Создать аккаунт</button>
-                    </div>
-                </form>
-            </div>
-            <div class="separator"></div>
-            <div class="signup-block">
-                <form action="/login" method="post" id="login-form">
-                    @csrf
-                    <h3>Вход в кабинет</h3>
-                    <div class="form-group my-2">
-                        <input id="my-input" class="form-control" type="text" name="email" placeholder="Логин">
-                    </div>
-                    <div class="form-group my-2">
-                        <input id="my-input" class="form-control" type="text" name="password" placeholder="Пароль">
-                    </div>
-                    <div class="form-group">
-                        <button class="btn btn-primary w-100" style="padding:8px 10px" id="login-btn">Войти</button>
-                    </div>
-                </form>
+            <div class="d-flex flex-column w-100 align-items-center modal-body">
+                <div class="modal-alert"></div>
+                <div class="signup-block">
+                    <form action="/signup" method="post" id="signup-form">
+                        @csrf
+                        <h3>Регистрация</h3>
+                        <div class="form-group my-2">
+                            <input id="my-input" class="form-control" type="text" name="name" placeholder="Ваше ФИО">
+                        </div>
+                        <div class="form-group my-2">
+                            <input id="my-input" class="form-control" type="text" name="email" placeholder="Ваш email">
+                        </div>
+                        <div class="form-group my-2">
+                            <input id="my-input" class="form-control" type="text" name="password" placeholder="Пароль">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary w-100" style="padding:8px 10px" id="signup-btn">Создать
+                                аккаунт</button>
+                        </div>
+                    </form>
+                </div>
+                <div class="separator"></div>
+                <div class="signup-block">
+                    <form action="/login" method="post" id="login-form">
+                        @csrf
+                        <h3>Вход в кабинет</h3>
+                        <div class="form-group my-2">
+                            <input id="my-input" class="form-control" type="text" name="email" placeholder="Логин">
+                        </div>
+                        <div class="form-group my-2">
+                            <input id="my-input" class="form-control" type="text" name="password" placeholder="Пароль">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-primary w-100" style="padding:8px 10px" id="login-btn">Войти</button>
+                        </div>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

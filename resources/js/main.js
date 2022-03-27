@@ -72,15 +72,53 @@ $(() => {
             url:     '/signup',
             type:     "POST",
             data: $("#signup-form").serialize(),
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
             success: function(response) {
                if(response.success){
                    $('.modal-alert').empty()
                    $('.modal-alert').html('<div class="alert alert-success">Вы успешно зарегистрировались. Перенаправляем вас в кабинет...</div>')
-               }
+                   $('.modal-alert').slideDown()
+                   setTimeout(function(){
+                        document.location = '/user/account'
+                    }, 3000)
+                }
             },
             error: function(response) {
                 $('.modal-alert').empty()
                 $('.modal-alert').html('<div class="alert alert-danger">' + response.responseJSON.message + '</div>')
+                $('.modal-alert').slideDown()
+                setTimeout(function(){
+                    $('.modal-alert').slideUp()
+                }, 3000)
+            }
+         });
+    })
+    $('#login-btn').on('click', function (e) {
+        e.preventDefault()
+        $.ajax({
+            url:     '/login',
+            type:     "POST",
+            data: $("#login-form").serialize(),
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function(response) {
+               if(response.success){
+                   $('.modal-alert').empty()
+                   $('.modal-alert').html('<div class="alert alert-success">Вы успешно вошли. Перенаправляем вас в кабинет...</div>')
+                   $('.modal-alert').slideDown()
+                    document.location = '/user/account'
+                }
+            },
+            error: function(response) {
+                $('.modal-alert').empty()
+                $('.modal-alert').html('<div class="alert alert-danger">' + response.responseJSON.message + '</div>')
+                $('.modal-alert').slideDown()
+                setTimeout(function(){
+                    $('.modal-alert').slideUp()
+                }, 3000)
             }
          });
     })

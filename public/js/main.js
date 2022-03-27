@@ -3290,15 +3290,53 @@ jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
       url: '/signup',
       type: "POST",
       data: jquery__WEBPACK_IMPORTED_MODULE_1___default()("#signup-form").serialize(),
+      headers: {
+        'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr('content')
+      },
       success: function success(response) {
         if (response.success) {
           jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').empty();
           jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').html('<div class="alert alert-success">Вы успешно зарегистрировались. Перенаправляем вас в кабинет...</div>');
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').slideDown();
+          setTimeout(function () {
+            document.location = '/user/account';
+          }, 3000);
         }
       },
       error: function error(response) {
         jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').empty();
         jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').html('<div class="alert alert-danger">' + response.responseJSON.message + '</div>');
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').slideDown();
+        setTimeout(function () {
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').slideUp();
+        }, 3000);
+      }
+    });
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#login-btn').on('click', function (e) {
+    e.preventDefault();
+    jquery__WEBPACK_IMPORTED_MODULE_1___default().ajax({
+      url: '/login',
+      type: "POST",
+      data: jquery__WEBPACK_IMPORTED_MODULE_1___default()("#login-form").serialize(),
+      headers: {
+        'X-CSRF-TOKEN': jquery__WEBPACK_IMPORTED_MODULE_1___default()('meta[name="csrf-token"]').attr('content')
+      },
+      success: function success(response) {
+        if (response.success) {
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').empty();
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').html('<div class="alert alert-success">Вы успешно вошли. Перенаправляем вас в кабинет...</div>');
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').slideDown();
+          document.location = '/user/account';
+        }
+      },
+      error: function error(response) {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').empty();
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').html('<div class="alert alert-danger">' + response.responseJSON.message + '</div>');
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').slideDown();
+        setTimeout(function () {
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal-alert').slideUp();
+        }, 3000);
       }
     });
   });
