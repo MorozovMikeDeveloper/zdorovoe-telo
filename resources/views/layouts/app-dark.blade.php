@@ -7,18 +7,15 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
     <title>Document</title>
-    <link href="css/main.css" rel="stylesheet">
+    <link href="/css/main.css" rel="stylesheet">
 </head>
 
 <body>
     <header class="header">
         <div class="container">
             <div class="header__wrap">
-                <ul class="header__menu">
-                    <li><a class="header-menu__link active" href="#" data-page="home-page">Главная</a></li>
-                    <li><a class="header-menu__link" href="#" data-page="about-page">Обо мне</a></li>
-                    <li><a class="header-menu__link" href="#" data-page="course-page">Курсы</a></li>
-                    <li><a class="header-menu__link" href="#" data-page="reviews-page">Отзывы</a></li>
+                <ul class="header__menu header__menu--dark">
+                    <li><a class="header-menu__link" href="/">Главная</a></li>
                     <li><a class="header-menu__link" href="/login">Войти</a></li>
                     <li><a class="header-menu__link" href="/signup">Регистрация</a></li>
                 </ul>
@@ -44,6 +41,6 @@
         <a class="header-menu__link header-menu__link--auth" href="#" data-page="contact-page">Кабинет</a>
     </div>
 </body>
-<script src="js/main.js"></script>
+<script src="/js/main.js"></script>
 
 </html>

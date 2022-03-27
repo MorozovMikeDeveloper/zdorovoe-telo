@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use App\Http\Requests\LoginRequest;
+
 class SessionsController extends Controller
 {
     public function create()
@@ -12,23 +14,19 @@ class SessionsController extends Controller
         return view('sessions.create');
     }
 
-    public function store(Request $request)
+    public function store(LoginRequest $request)
     {
-        session()->regenerate();
-
         $formFields = $request->only(['email', 'password']);
 
         if(Auth::attempt($formFields)){
-            // return redirect(route('user.account'));
-            return response()->json(['success' => 1]);
+            return redirect()->intended(route('account'));
         }
-        // return response()->json(['message' => 'Email или пароль не верны']);
-        return redirect('/')->with('success', 'Добро пожаловать!');
+        return redirect(route('login_form'))->withErrors(['message' => 'Email или пароль неверны']);
     }
 
     public function destroy()
     {
-        auth()->logout();
+        Auth::logout();
 
         return redirect('/')->with('success', 'Пока!');
     }
