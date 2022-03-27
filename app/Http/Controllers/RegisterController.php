@@ -21,7 +21,6 @@ class RegisterController extends Controller
         ]);
 
         if(User::where('email', $validateFields['email'])->exists()){
-            http_response_code(400);
             return response()->json(['message' => 'Пользователь с таким email уже существует']);
         }
 

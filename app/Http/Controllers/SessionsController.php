@@ -22,9 +22,8 @@ class SessionsController extends Controller
             // return redirect(route('user.account'));
             return response()->json(['success' => 1]);
         }
-        http_response_code(400);
-        return response()->json(['message' => 'Email или пароль не верны']);
-        // return redirect('/')->with('success', 'Добро пожаловать!');
+        // return response()->json(['message' => 'Email или пароль не верны']);
+        return redirect('/')->with('success', 'Добро пожаловать!');
     }
 
     public function destroy()

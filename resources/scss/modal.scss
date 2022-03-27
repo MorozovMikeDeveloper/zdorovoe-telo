@@ -22,8 +22,10 @@
 
     &-wraper{
         position: relative;
+        width: 100%;
         & .close-modal{
             position: absolute;
+            z-index: 100;
             top: 0;
             right: 0;
             height: 30px;
