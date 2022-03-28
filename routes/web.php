@@ -32,14 +32,14 @@ Route::get('/fail', function () {
 
 Route::get('/signup', function () {
     if(Auth::check()){
-        return view('account');
+        return redirect(route('account'));
     }
     return view('signup');
 })->name('signup_form');
 
 Route::get('/login', function () {
     if(Auth::check()){
-        return view('account');
+        return redirect(route('account'));
     }
     return view('login');
 })->name('login_form');
@@ -48,9 +48,7 @@ Route::post('/signup', [RegisterController::class, 'store']);
 Route::post('/login', [SessionsController::class, 'store']);
 
 Route::prefix('user')->group(function(){
-    Route::view('/account', 'account')->middleware('auth')->name('account');
+    Route::get('/account', [CatalogController::class, 'index'])->middleware('auth')->name('account');
 });
-
-Route::get('cabinet', [CatalogController::class, 'index']);
 
 Route::get('/logout', [SessionsController::class, 'destroy'])->middleware('auth');

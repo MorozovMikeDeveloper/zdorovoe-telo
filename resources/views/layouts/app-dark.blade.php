@@ -16,8 +16,13 @@
             <div class="header__wrap">
                 <ul class="header__menu header__menu--dark">
                     <li><a class="header-menu__link" href="/">Главная</a></li>
+                    @if(!Auth::check())
                     <li><a class="header-menu__link" href="/login">Войти</a></li>
                     <li><a class="header-menu__link" href="/signup">Регистрация</a></li>
+                    @else
+                    <li><a class="header-menu__link" href="/user/account">Кабинет</a></li>
+                    <li><a class="header-menu__link" href="/logout">Выйти</a></li>
+                    @endif
                 </ul>
                 <div class="header__mobile-menu-btn">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
@@ -29,7 +34,7 @@
             </div>
         </div>
     </header>
-    <main>
+    <main style="padding-top: 80px">
         @yield('content')
     </main>
     <footer class="text-center">© <span id="curryear"></span> Физиотерапевт Илья Денисов. Сайт создан <a

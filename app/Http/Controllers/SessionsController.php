@@ -16,6 +16,7 @@ class SessionsController extends Controller
 
     public function store(LoginRequest $request)
     {
+
         $formFields = $request->only(['email', 'password']);
 
         if(Auth::attempt($formFields)){
