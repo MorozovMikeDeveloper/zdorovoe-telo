@@ -13,35 +13,26 @@
         <h3>Приобретённые курсы</h3>
 
         <div class="container mt-5 justify-content-around">
-            <!-- @foreach($courses as $course)
-            <div class="card w-25">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $course->name }}</h5>
-                    <p class="card-text">{{ $course->name }}</p>
-                    <a href="cabinet . {{ $course->slug }}" class="btn btn-primary">Открыть детальную</a>
-                </div>
-            </div>
-            @endforeach -->
-        </div>
-    </div>
-    <div class="my-3">
-        <h3>Каталог курсов</h3>
-
-        <div class="d-flex mt-5 justify-content-between flex-row">
-            @foreach($courses as $course)
-
-            @php
-            $slug = 'cabinet' . $course->slug;
-            @endphp
-
-            <div class="card w-25">
-                <div class="card-body">
-                    <h5 class="card-title">{{ $course->name }}</h5>
-                    <p class="card-text">{{ $course->name }}</p>
-                    <a href="{{ $slug }}" class="btn btn-primary">Открыть детальную</a>
-                </div>
-            </div>
-            @endforeach
+            <table class="table-responsive">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Дата</th>
+                        <th>Курс</th>
+                        <th>Статус</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach($courses as $course)
+                        <tr>
+                            <td>{{ $course->id }}</td>
+                            <td>{{ $course->paid_at }}</td>
+                            <td>{{ $course->name }}</td>
+                            <td>{{ $course->status }}</td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
         </div>
     </div>
 </div>
