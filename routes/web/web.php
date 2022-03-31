@@ -47,8 +47,5 @@ Route::get('/login', function () {
 Route::post('/signup', [RegisterController::class, 'store']);
 Route::post('/login', [SessionsController::class, 'store']);
 
-Route::prefix('user')->group(function(){
-    Route::get('/account', [CatalogController::class, 'index'])->middleware('auth')->name('account');
-});
 
 Route::get('/logout', [SessionsController::class, 'destroy'])->middleware('auth');

@@ -27,7 +27,7 @@
     <div class="my-3">
         <h3>Каталог курсов</h3>
 
-        <div class="container mt-5 justify-content-around">
+        <div class="d-flex mt-5 justify-content-between flex-row">
             @foreach($courses as $course)
             <div class="card w-25">
                 <div class="card-body">
