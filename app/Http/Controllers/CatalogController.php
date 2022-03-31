@@ -12,7 +12,7 @@ class CatalogController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('account', [
+        return view('catalog', [
             'courses' => Course::all(),
             'user' => $user
         ]);

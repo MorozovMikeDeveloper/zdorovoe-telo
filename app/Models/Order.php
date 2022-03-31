@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
+    use HasFactory;
+
     protected $fillable = [
         'user_id',
         'payment_id',
@@ -17,5 +19,4 @@ class Order extends Model
     protected $casts = [
         'paid_at' => 'datetime'
     ];
-    use HasFactory;
 }
