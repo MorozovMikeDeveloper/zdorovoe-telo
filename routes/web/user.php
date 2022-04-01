@@ -1,6 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\UserController;
 
-Route::get('/account', [CatalogController::class, 'index'])->middleware('auth')->name('account');
+Route::get('/', [UserController::class, 'show'])->middleware('auth')->name('account');

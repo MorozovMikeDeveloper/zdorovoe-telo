@@ -47,5 +47,6 @@ Route::get('/login', function () {
 Route::post('/signup', [RegisterController::class, 'store']);
 Route::post('/login', [SessionsController::class, 'store']);
 
+Route::get('/courses', [CatalogController::class, 'index']);
 
 Route::get('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
