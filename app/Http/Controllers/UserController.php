@@ -12,6 +12,7 @@ class UserController extends Controller
     {
         $courses = DB::table('orders')->join('courses',
             'orders.course_id', '=', 'courses.id');
+        dd($courses);
         return view('user', [
             'user' => User::all(),
             'courses' => $courses
