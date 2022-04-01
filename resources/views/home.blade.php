@@ -45,14 +45,23 @@
     <section class="section section--dark" id="courses">
         <div class="container">
             <div class="row">
+
                 <div class="col-12 d-flex flex-column align-items-center">
                     <div class="block-title block-title--light my-5">Курсы</div>
-                    <div class="course-card bg-white d-flex flex-column py-4 px-2">
-                        <div class="course-card__title text-green text-uppercase">консультация</div>
-                        <div class="course-card__description">что-то совершенно инновационное</div>
-                        <hr>
-                        <div class="course-card__price">4999 руб.</div><a class="btn-primary" href="">Приобрести</a>
-                    </div><a class="btn-primary" href="">Смотреть все</a>
+                    @forelse($courses as $course)
+                            <div class="course-card bg-white d-flex flex-column py-4 px-2">
+                                <div class="course-card__title text-green text-uppercase">{{ $course->name }}</div>
+                                <div class="course-card__description">{{ $course->description }}</div>
+                                <hr>
+                                <div class="course-card__price">{{ $course->cost }} руб.</div>
+                                <a class="btn-primary" href="">Приобрести</a>
+                                <a class="btn-outline" href="">Подробнее</a>
+                            </div>
+
+                    @empty
+                        <h3 class="text-center">Курсы ещё не созданы</h3>
+                    @endforelse
+                    <a class="btn-primary" href="">Смотреть все</a>
                 </div>
             </div>
         </div>
@@ -110,17 +119,23 @@
         <div class="container">
             <div class="row">
                 <div class="col-12">
-                    <div class="block-title my-5">Мои курсы</div>
+                    <div class="block-title my-5">Каталог курсов</div>
                 </div>
                 <div class="col-lg-8 offset-lg-2 my-3"><img class="img-fluid" src="{{ asset('img/leg.webp') }}" alt=""></div>
+                @forelse($courses as $course)
                 <div class="col-12">
                     <div class="course-card bg-white d-flex flex-column py-4 px-2">
-                        <div class="course-card__title text-green text-uppercase">консультация</div>
-                        <div class="course-card__description">что-то совершенно инновационное</div>
+                        <div class="course-card__title text-green text-uppercase">{{ $course->name }}</div>
+                        <div class="course-card__description">{{ $course->description }}</div>
                         <hr>
-                        <div class="course-card__price">4999 руб.</div><a class="btn-primary" href="">Приобрести</a>
+                        <div class="course-card__price">{{ $course->cost }} руб.</div>
+                        <a class="btn-primary" href="">Приобрести</a>
+                        <a class="btn-outline" href="">Подробнее</a>
                     </div>
                 </div>
+                @empty
+                    <h3 class="text-center">Курсы ещё не созданы</h3>
+                @endforelse
             </div>
         </div>
     </section>

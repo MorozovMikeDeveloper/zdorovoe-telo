@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('category');
+            $table->string('description');
+            $table->float('cost');
             $table->timestamps();
         });
     }
