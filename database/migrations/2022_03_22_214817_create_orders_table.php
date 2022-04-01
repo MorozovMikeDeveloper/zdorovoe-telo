@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('user_id');
             $table->integer('payment_id');
             $table->integer('course_id');
+            $table->boolean('status');
             $table->timestamps();
             $table->timestamp('paid_at');
         });
