@@ -32,14 +32,14 @@ Route::get('/fail', function () {
 
 Route::get('/signup', function () {
     if(Auth::check()){
-        return redirect(route('account'));
+        return redirect(route('user'));
     }
     return view('signup');
 })->name('signup_form');
 
 Route::get('/login', function () {
     if(Auth::check()){
-        return redirect(route('account'));
+        return redirect(route('user'));
     }
     return view('login');
 })->name('login_form');

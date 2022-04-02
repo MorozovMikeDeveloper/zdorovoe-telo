@@ -31,7 +31,7 @@ class RegisterController extends Controller
         if($user){
             auth()->login($user);
 
-            return redirect(route('account'));
+            return redirect(route('user'));
         }
 
 

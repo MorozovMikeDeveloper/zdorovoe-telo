@@ -19,8 +19,12 @@ class SessionsController extends Controller
 
         $formFields = $request->only(['email', 'password']);
 
-        if(Auth::attempt($formFields)){
-            return redirect()->intended(route('account'));
+        if (Auth::attempt($formFields)){
+            if (Auth::user()->getAttribute('role') === 'admin') {
+                return redirect('admin');
+            }
+
+            return redirect()->intended(route('user'));
         }
         return redirect(route('login_form'))->withErrors(['message' => 'Email или пароль неверны']);
     }
