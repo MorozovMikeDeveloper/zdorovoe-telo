@@ -19,7 +19,9 @@ class RegisterController extends Controller
         $validateFields = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
-            'name' => 'required'
+            'name' => 'required',
+            'sex' => 'required',
+            'bdate' => 'required|date'
         ]);
 
         if(User::where('email', $validateFields['email'])->exists()){

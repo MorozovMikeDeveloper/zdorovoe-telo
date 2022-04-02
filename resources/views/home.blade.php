@@ -49,13 +49,12 @@
                 <div class="col-12 d-flex flex-column align-items-center">
                     <div class="block-title block-title--light my-5">Курсы</div>
                     @forelse($courses as $course)
-                            <div class="course-card bg-white d-flex flex-column py-4 px-2">
+                            <div class="course-card bg-white d-flex flex-column py-4 px-2 my-2">
                                 <div class="course-card__title text-green text-uppercase">{{ $course->name }}</div>
                                 <div class="course-card__description">{{ $course->description }}</div>
                                 <hr>
                                 <div class="course-card__price">{{ $course->cost }} руб.</div>
-                                <a class="btn-primary" href="">Приобрести</a>
-                                <a class="btn-outline" href="">Подробнее</a>
+                                <a class="btn-primary" href="{{ route('courses.show', $course->slug) }}">Приобрести</a>
                             </div>
 
                     @empty
@@ -124,13 +123,12 @@
                 <div class="col-lg-8 offset-lg-2 my-3"><img class="img-fluid" src="{{ asset('img/leg.webp') }}" alt=""></div>
                 @forelse($courses as $course)
                 <div class="col-12">
-                    <div class="course-card bg-white d-flex flex-column py-4 px-2">
+                    <div class="course-card bg-white d-flex flex-column py-4 px-2 my-2">
                         <div class="course-card__title text-green text-uppercase">{{ $course->name }}</div>
                         <div class="course-card__description">{{ $course->description }}</div>
                         <hr>
                         <div class="course-card__price">{{ $course->cost }} руб.</div>
-                        <a class="btn-primary" href="">Приобрести</a>
-                        <a class="btn-outline" href="">Подробнее</a>
+                        <a class="btn-primary" href="{{ route('courses.show', $course->slug) }}">Приобрести</a>
                     </div>
                 </div>
                 @empty
