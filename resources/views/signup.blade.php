@@ -23,7 +23,24 @@
                 <div class="form-group my-2">
                     <label for="email" class="form-label">Email</label>
                     <input type="email" class="form-control" name="email" id="email"
-                        placeholder="name@example.com">
+                           placeholder="name@example.com">
+                </div>
+                <label for="email" class="form-label">Пол</label>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sex" id="sex0" value="0">
+                    <label class="form-check-label" for="sex0">
+                        Женский
+                    </label>
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="radio" name="sex" id="sex1" value="1">
+                    <label class="form-check-label" for="sex1">
+                        Мужской
+                    </label>
+                </div>
+                <div class="form-group my-2">
+                    <label for="bdate" class="form-label">Дата рождения</label>
+                    <input type="date" class="form-control" name="bdate" id="bdate">
                 </div>
                 <div class="form-group my-2">
                     <label for="password" class="form-label">Пароль</label>

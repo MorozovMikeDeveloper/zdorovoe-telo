@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained('users');
+            $table->foreignId('user_id')->references('id')->on('users');
             $table->integer('payment_id');
-            $table->foreignId('course_id')->constrained('courses');
+            $table->foreignId('course_id')->references('id')->on('courses');
             $table->boolean('status');
             $table->timestamps();
             $table->timestamp('paid_at');

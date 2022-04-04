@@ -19,14 +19,10 @@ class Order extends Model
     protected $casts = [
         'paid_at' => 'datetime'
     ];
-
-    public function user()
-    {
-        return $this->hasOne(User::class);
+    public function course(){
+        return $this->hasOne('App\Models\Course', 'id', 'course_id');
     }
-
-    public function course()
-    {
-        return $this->hasOne(Course::class);
+    public function user(){
+        return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 }
