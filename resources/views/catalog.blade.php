@@ -16,7 +16,7 @@
             <div class="card-body">
                 <h5 class="card-title">{{ $course->name }}</h5>
                 <p class="card-text">{{ $course->name }}</p>
-                <a href="{{ $slug }}" class="btn btn-primary">Открыть детальную</a>
+                <a href="{{ route('courses.show', $course->slug) }}" class="btn btn-primary">Открыть детальную</a>
             </div>
         </div>
         @endforeach

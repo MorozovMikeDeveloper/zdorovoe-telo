@@ -23,7 +23,7 @@
                     <li><a class="header-menu__link" href="/login">Войти</a></li>
                     <li><a class="header-menu__link" href="/signup">Регистрация</a></li>
                     @else
-                    <li><a class="header-menu__link" href="/user/account">Кабинет</a></li>
+                    <li><a class="header-menu__link" href="/user">Кабинет</a></li>
                     <li><a class="header-menu__link" href="/logout">Выйти</a></li>
                     @endif
                 </ul>

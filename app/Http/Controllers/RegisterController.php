@@ -19,7 +19,9 @@ class RegisterController extends Controller
         $validateFields = $request->validate([
             'email' => 'required|email',
             'password' => 'required|min:6',
-            'name' => 'required'
+            'name' => 'required',
+            'sex' => 'required',
+            'bdate' => 'required|date'
         ]);
 
         if(User::where('email', $validateFields['email'])->exists()){
@@ -31,7 +33,7 @@ class RegisterController extends Controller
         if($user){
             auth()->login($user);
 
-            return redirect(route('account'));
+            return redirect(route('user'));
         }
 
 
