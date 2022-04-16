@@ -7,18 +7,21 @@
 @stop
 
 @section('content')
-    <a href="courses/create-course">
-        <x-adminlte-button label="New course" theme="primary"/>
-    </a>
+    <div class="d-flex bd-highlight mb-4">
+        <a href="courses/create-course">
+            <x-adminlte-button label="New course" theme="primary"/>
+        </a>
+    </div>
 
-    <div class="container mt-5 justify-content-around">
-        <table class="table-responsive">
+    <div class="container">
+        <table class="table">
             <thead>
                 <tr>
                     <th>#</th>
                     <th>Course</th>
                     <th>Category</th>
                     <th>Description</th>
+                    <th width="30%">Preview</th>
                 </tr>
             </thead>
 
@@ -29,6 +32,7 @@
                     <td>{{ $course->name }}</td>
                     <td>{{ $course->category }}</td>
                     <td>{{ $course->description }}</td>
+                    <td><img src="{{ $course->getFirstMediaUrl('preview_images', 'thumb') }}" / width="120px"></td>
                 </tr>
                 @endforeach
             </tbody>
