@@ -5,12 +5,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img class="img-fluid" src="{{  $course->getFirstMediaUrl('preview_images') }}">
+                <img class="img-fluid" src="{{ $course->getFirstMediaUrl('preview_images') }}" alt="Course preview">
             </div>
             <div class="col-md-8">
                 <div class="block-title my-2">{{ $course->name }}</div>
                 <div class="my-md-4">
-                    <p>{{ $course->description  }}</p>
+                    <p>{{ $course->description }}</p>
                 </div>
                 @guest
                     <div class="my-md-4">
@@ -20,6 +20,7 @@
                         <a class="btn-primary" href="{{ route('login_form') }}">Приобрести</a>
                     </div>
                 @endguest
+
                 @auth
                     @if(!$content)
                     <div class="my-md-4">
@@ -28,12 +29,14 @@
                     <div class="my-md-4">
                         <a class="btn-primary" href="">Приобрести</a>
                     </div>
+
+                    @elseif($content)
+                        <video width="420" height="340" controls>
+                            <source src="{{ $course->getFirstMediaUrl('courses_videos') }}">
+                        </video>
                     @endif
                 @endauth
             </div>
         </div>
-        @if($content)
-            <div class="alert alert-success">Вы оплатили курс. Здесь будет контент</div>
-        @endif
     </div>
 @endsection
