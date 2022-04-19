@@ -26,8 +26,6 @@ class CatalogController extends Controller
         $course = Course::where('slug', $slug)->get()->first();
         $user = Auth::user();
 
-
-
         if($user){
             if($this->checkSuccessOrder($course, $user)){
                 $content = true;
@@ -37,6 +35,7 @@ class CatalogController extends Controller
         if(!$course){
             return abort(404);
         }
+
         return view('course-detailed',
             ['course' => $course, 'content' => $content]
         );

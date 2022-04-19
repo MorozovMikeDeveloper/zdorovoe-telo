@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img class="img-fluid" src="{{  $course->getFirstMediaUrl('preview_images') }}">
+                <img class="img-fluid" src="{{ $course->getFirstMediaUrl('preview_images') }}" alt="Превью курса">
             </div>
             <div class="col-md-8">
                 <div class="block-title my-2">{{ $course->name }}</div>
@@ -20,6 +20,7 @@
                         <a class="btn-primary" href="{{ route('login_form') }}">Приобрести</a>
                     </div>
                 @endguest
+
                 @auth
                     @if(!$content)
                     <div class="my-md-4">
@@ -28,12 +29,15 @@
                     <div class="my-md-4">
                         <a class="btn-primary" href="">Приобрести</a>
                     </div>
+
+                    @elseif($content)
+                    <video width="400" height="320" controls>
+                        <source src="{{ $course->getFirstMediaUrl('courses_videos') }}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
                     @endif
                 @endauth
             </div>
         </div>
-        @if($content)
-            <div class="alert alert-success">Вы оплатили курс. Здесь будет контент</div>
-        @endif
     </div>
 @endsection

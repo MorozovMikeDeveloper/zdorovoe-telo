@@ -48,10 +48,6 @@ Route::post('/login', [SessionsController::class, 'store']);
 
 Route::get('/courses', [CatalogController::class, 'index']);
 
-Route::get('/courses/new', function(){
-    \App\Models\Course::create(array('name' => 'тестовое легендарное', 'category' => 1, 'description' => 'лучший курс', 'cost' => '1'));
-});
-
 Route::get('/courses/{slug}', [CatalogController::class, 'show'])->name('courses.show');
 
 Route::get('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
