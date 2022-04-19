@@ -5,12 +5,12 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img class="img-fluid" src="{{ $course->getFirstMediaUrl('preview_images') }}" alt="Превью курса">
+                <img class="img-fluid" src="{{ $course->getFirstMediaUrl('preview_images') }}" alt="Course preview">
             </div>
             <div class="col-md-8">
                 <div class="block-title my-2">{{ $course->name }}</div>
                 <div class="my-md-4">
-                    <p>{{ $course->description  }}</p>
+                    <p>{{ $course->description }}</p>
                 </div>
                 @guest
                     <div class="my-md-4">
@@ -31,10 +31,9 @@
                     </div>
 
                     @elseif($content)
-                    <video width="400" height="320" controls>
-                        <source src="{{ $course->getFirstMediaUrl('courses_videos') }}" type="video/mp4">
-                        Your browser does not support the video tag.
-                    </video>
+                        <video width="420" height="340" controls>
+                            <source src="{{ $course->getFirstMediaUrl('courses_videos') }}">
+                        </video>
                     @endif
                 @endauth
             </div>
