@@ -2,22 +2,20 @@
 
 
 @section('content')
-<div class="my-3">
-    <h3>Каталог курсов</h3>
+<div class="container my-3">
+    <h3 class="m-2">Каталог курсов</h3>
 
-    <div class="d-flex mt-5 justify-content-between flex-row">
+    <div class="d-flex justify-content-center flex-wrap">
+
         @foreach($courses as $course)
-
-        @php
-        $slug = url()->current() . $course->slug;
-        @endphp
-
-        <div class="card w-25">
+        <div class="card m-2" style="width: 15rem;">
+            <img src="{{ $course->getFirstMediaUrl('preview_images', 'thumb') }}" class="card-img-top" alt="Preview of course">
             <div class="card-body">
                 <h5 class="card-title">{{ $course->name }}</h5>
-                <p class="card-text">{{ $course->name }}</p>
+                <p class="card-text">{{ $course->description }}</p>
                 <a href="{{ route('courses.show', $course->slug) }}" class="btn btn-primary">Открыть детальную</a>
             </div>
         </div>
         @endforeach
+
 @endsection

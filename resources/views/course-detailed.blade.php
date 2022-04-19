@@ -5,7 +5,7 @@
     <div class="container">
         <div class="row">
             <div class="col-md-4">
-                <img class="img-fluid" src="{{ $course->preview ?? 'https://placeimg.com/640/480/any' }}">
+                <img class="img-fluid" src="{{  $course->getFirstMediaUrl('preview_images') }}">
             </div>
             <div class="col-md-8">
                 <div class="block-title my-2">{{ $course->name }}</div>

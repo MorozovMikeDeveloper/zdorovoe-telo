@@ -7,7 +7,7 @@
 @stop
 
 @section('content')
-    <form action="create-course" method="post">
+    <form action="create-course" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
             <x-adminlte-input name="name" label="Name" placeholder="Course name"
@@ -25,12 +25,17 @@
         </div>
 
         <div class="row">
-            <x-adminlte-input-file name="picture" label="Upload file" placeholder="Choose a picture..."
-                                   fgroup-class="col-md-6" disable-feedback/>
+            <x-adminlte-input-file name="preview_image" label="Upload image for this course" placeholder="Choose a file..."
+                                   fgroup-class="col-md-6"/>
         </div>
 
         <div class="row">
-            <x-adminlte-textarea name="description" placeholder="Insert description..."
+            <x-adminlte-input-file name="course_video" label="Upload video for this course" placeholder="Choose a file..."
+                                    fgroup-class="col-md-6"/>
+        </div>
+
+        <div class="row">
+            <x-adminlte-textarea name="description" label="Description" placeholder="Insert description..."
                                  fgroup-class="col-md-6" disable-feedback/>
         </div>
 
