@@ -28,11 +28,9 @@ class CourseController extends Controller
             'description'   => 'required'
         ]);
 
-
             $course = Course::create($validateFields);
             $course->addMediaFromRequest('preview_image')->toMediaCollection('preview_images');
             $course->addMediaFromRequest('course_video')->toMediaCollection('courses_videos');
-
 
         return redirect('admin/courses');
     }
