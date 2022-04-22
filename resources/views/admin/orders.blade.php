@@ -1,9 +1,9 @@
 @extends('adminlte::page')
 
-@section('title', 'Orders')
+@section('title', 'Покупки')
 
 @section('content_header')
-    <h1>Orders</h1>
+    <h1>Оплаты</h1>
 @stop
 
 @section('content')
@@ -12,9 +12,9 @@
             <thead>
                 <tr>
                     <th>#</th>
-                    <th>Date</th>
-                    <th>Course</th>
-                    <th>Status</th>
+                    <th>Дата</th>
+                    <th>Название курса</th>
+                    <th>Статус оплаты</th>
                 </tr>
             </thead>
 

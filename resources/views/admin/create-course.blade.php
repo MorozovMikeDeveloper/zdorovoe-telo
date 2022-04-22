@@ -1,44 +1,44 @@
 @extends('adminlte::page')
 
-@section('title', 'New Course')
+@section('title', 'Новый курс')
 
 @section('content_header')
-    <h1>Create new course</h1>
+    <h1>Создание нового курса</h1>
 @stop
 
 @section('content')
     <form action="create-course" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <x-adminlte-input name="name" label="Name" placeholder="Course name"
+            <x-adminlte-input name="name" label="Name" placeholder="Название курса"
                               fgroup-class="col-md-6" disable-feedback/>
         </div>
 
         <div class="row">
-            <x-adminlte-input name="slug" label="Slug" placeholder="Course slug"
+            <x-adminlte-input name="slug" label="Урл" placeholder="Урл курса"
                               fgroup-class="col-md-6" disable-feedback/>
         </div>
 
         <div class="row">
-            <x-adminlte-input name="category" label="Category" placeholder="Course category"
+            <x-adminlte-input name="category" label="Категория" placeholder="Категория курса"
                               fgroup-class="col-md-6" disable-feedback/>
         </div>
 
         <div class="row">
-            <x-adminlte-input-file name="preview_image" label="Upload image for this course" placeholder="Choose a file..."
+            <x-adminlte-input-file name="preview_image" label="Превью курса (изображение)" placeholder="Загрузить изображение..."
                                    fgroup-class="col-md-6"/>
         </div>
 
         <div class="row">
-            <x-adminlte-input-file name="course_video" label="Upload video for this course" placeholder="Choose a file..."
+            <x-adminlte-input-file name="course_video" label="Видеоурок курса (видео)" placeholder="Загрузите видео..."
                                     fgroup-class="col-md-6"/>
         </div>
 
         <div class="row">
-            <x-adminlte-textarea name="description" label="Description" placeholder="Insert description..."
+            <x-adminlte-textarea name="description" label="Описание" placeholder="Введите описание..."
                                  fgroup-class="col-md-6" disable-feedback/>
         </div>
 
-        <x-adminlte-button class="btn-flat" type="submit" label="Submit" theme="success" icon="fas fa-lg fa-save"/>
+        <x-adminlte-button class="btn-flat" type="submit" label="Создать" theme="success" icon="fas fa-lg fa-save"/>
     </form>
 @stop
