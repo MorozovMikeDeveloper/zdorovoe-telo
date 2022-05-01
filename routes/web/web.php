@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\CatalogController;
+use App\Http\Controllers\SocialController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -42,6 +43,9 @@ Route::get('/login', function () {
     }
     return view('login');
 })->name('login_form');
+
+Route::get('/login/social-auth/{provider}', [SocialController::class, 'redirectToProvider'])->name('auth.social');
+Route::get('/login/social-auth/{provider}/callback', [SocialController::class, 'handleProviderCallback'])->name('auth.social.callback');
 
 Route::post('/signup', [RegisterController::class, 'store']);
 Route::post('/login', [SessionsController::class, 'store']);

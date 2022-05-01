@@ -27,6 +27,11 @@
                 <div>
                     Впервые здесь? <a href="{{ route('signup_form') }}">Зарегистрируйтесь</a>
                 </div>
+                <div>
+                    <a href="{{ route('auth.social', 'vkontakte') }}" title="Vkontakte">
+                        <i class="fa-brands fa-vk">Авторизация вк</i>
+                    </a>
+                </div>
                 <button type="submit" class="btn btn-primary w-100">Войти</button>
             </form>
         </div>
