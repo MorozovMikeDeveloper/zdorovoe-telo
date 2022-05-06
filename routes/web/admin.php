@@ -6,10 +6,11 @@ use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\CourseController;
 use App\Http\Controllers\SessionsController;
 
+Route::get('/login', function() {
+    return view('admin.login');
+})->name('admin-auth');
+
 Route::middleware('admin')->group(function() {
-    Route::get('/login', function() {
-        return view('admin.login');
-    });
 
     Route::get('/', function() {
         return view('admin.admin');

@@ -2,6 +2,7 @@
 
 
 @section('content')
+<link type="text/css" rel="stylesheet" href="{{ mix('css/main.css') }}">
 <div class="container" style="margin-top: 100px">
     <div class="row">
         <div class="col-md-6 offset-md-3">
@@ -28,6 +29,12 @@
                     Впервые здесь? <a href="{{ route('signup_form') }}">Зарегистрируйтесь</a>
                 </div>
                 <button type="submit" class="btn btn-primary w-100">Войти</button>
+                <a class="btn btn-outline-primary w-100" href="{{ route('auth.social', 'vkontakte') }}" title="Vkontakte">
+                    <div class="d-flex justify-content-center align-items-center">
+                        <div>Войти через &nbsp;</div>
+                        <div><i class="fa-brands fa-2x fa-vk"></i></div>
+                    </div>
+                </a>
             </form>
         </div>
     </div>
