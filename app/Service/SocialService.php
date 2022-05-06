@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Models\User;
 use App\Models\SocialAccount;
+use Illuminate\Support\Str;
 
 class SocialService
 {
@@ -22,7 +23,7 @@ class SocialService
         $user = User::create([
             'name' => $socialiteUser->getName(),
             'email' => $socialiteUser->getEmail(),
-            'password' => bcrypt(str_random(25)),
+            'password' => bcrypt(Str::random(25)),
         ]);
 
         $this->addSocialAccount($provider, $user, $socialiteUser);

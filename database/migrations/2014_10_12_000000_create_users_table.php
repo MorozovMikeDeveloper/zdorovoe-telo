@@ -20,7 +20,7 @@ return new class extends Migration
             // $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->unsignedTinyInteger('sex')->default(0);
-            $table->dateTime('bdate');
+            $table->dateTime('bdate')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

@@ -21,4 +21,7 @@ mix.webpackConfig({
 })
 
 mix.js('resources/js/main.js', 'public/js')
-    .sass('resources/scss/main.scss', 'public/css');
+    .sass('resources/scss/main.scss', 'public/css')
+    .copy('node_modules/font-awesome/fonts/', 'public/fonts')
+    .sass('node_modules/font-awesome/scss/font-awesome.scss', 'public/css')
+    .version();
