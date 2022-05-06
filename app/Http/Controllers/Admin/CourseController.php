@@ -21,11 +21,11 @@ class CourseController extends Controller
     {
         $validateFields = $request->validate([
             'name'          => 'required',
-            'slug'          => 'required',
             'category'      => 'required',
             'preview_image' => 'required',
             'course_video'  => 'required',
-            'description'   => 'required'
+            'description'   => 'required',
+            'cost'          => 'required'
         ]);
 
             $course = Course::create($validateFields);

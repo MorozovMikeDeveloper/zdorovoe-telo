@@ -13,7 +13,7 @@
         <h3>Приобретённые курсы</h3>
 
         <div class="container mt-5 justify-content-around">
-            <table class="table-responsive">
+            <table class="table table-responsive">
                 <thead>
                     <tr>
                         <th>#</th>
@@ -26,7 +26,7 @@
                     @foreach($courses as $course)
                         <tr>
                             <td>{{ $course->id }}</td>
-                            <td>{{ $course->paid_at }}</td>
+                            <td>{{ $course->updated_at }}</td>
                             <td>{{ $course->name }}</td>
                             <td>{{ $course->status }}</td>
                         </tr>

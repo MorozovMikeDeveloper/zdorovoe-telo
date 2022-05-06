@@ -21,6 +21,7 @@
                     <th>Название</th>
                     <th>Категория</th>
                     <th>Описание</th>
+                    <th>Стоимость</th>
                     <th width="30%">Превью</th>
                 </tr>
             </thead>
@@ -32,6 +33,7 @@
                     <td>{{ $course->name }}</td>
                     <td>{{ $course->category }}</td>
                     <td>{{ $course->description }}</td>
+                    <td>{{ $course->cost }} руб.</td>
                     <td><img src="{{ $course->getFirstMediaUrl('preview_images', 'thumb') }}" / width="120px"></td>
                 </tr>
                 @endforeach
