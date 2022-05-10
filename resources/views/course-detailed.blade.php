@@ -17,7 +17,7 @@
                         <div class="course-card__price">{{ $course->cost }} руб.</div>
                     </div>
                     <div class="my-md-4">
-                        <a class="btn-primary d-block" href="{{ route('login_form') }}">Приобрести</a>
+                        <button class="btn-primary" href="{{ route('login_form') }}">Приобрести</button>
                     </div>
                 @endguest
 
@@ -27,7 +27,11 @@
                         <div class="course-card__price">{{ $course->cost }} руб.</div>
                     </div>
                     <div class="my-md-4">
-                        <a class="btn-primary d-block" href="">Приобрести</a>
+                        <form method="post" action="{{ route('payment_create') }}">
+                            @csrf
+                            <input type="hidden" name="course_id" value="{{ $course->id }}">
+                            <button type="submit" class="btn-primary">Приобрести</button>
+                        </form>
                     </div>
 
                     @elseif($content)

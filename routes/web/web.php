@@ -7,6 +7,7 @@ use App\Http\Controllers\RegisterController;
 use App\Http\Controllers\SessionsController;
 use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\SocialController;
+use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Auth;
 
 /*
@@ -19,6 +20,11 @@ use Illuminate\Support\Facades\Auth;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::middleware('auth')->prefix('payment')->group(function(){
+    Route::post('/create', [PaymentController::class, 'create'])->name('payment_create');
+    Route::get('/notification', [PaymentController::class, 'notification'])->name('payment_notification');
+});
 
 Route::get('/', [HomeController::class, 'index']);
 
