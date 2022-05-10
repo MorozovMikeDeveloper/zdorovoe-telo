@@ -2,7 +2,7 @@
 
 
 @section('content')
-<div class="container">
+<div class="container" style="padding-top: 80px">
     <div class="card">
         <div class="card-body">
             С возвращением, {{ $user->getAttribute('name') }}
