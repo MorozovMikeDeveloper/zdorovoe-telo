@@ -19,14 +19,6 @@
                     <div class="my-md-4">
                         <a class="btn-primary d-block" href="{{ route('login_form') }}">Приобрести</a>
                     </div>
-                    <video id="my-player" class="video-js vjs-theme-forest"
-                           controls
-                           style="width: 100%;
-                            height: 100%;
-                            min-height: 100px;"
-                    >
-                        <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
-                    </video>
                 @endguest
 
                 @auth
@@ -39,8 +31,14 @@
                     </div>
 
                     @elseif($content)
-                        <video width="420" height="340" controls>
-                            <source src="{{ $course->getFirstMediaUrl('courses_videos') }}">
+                        <video id="my-player" class="video-js vjs-theme-forest"
+                                controls
+                                style="width: 100%;
+                                height: 100%;
+                                min-height: 100px;"
+                               poster="{{ $course->getFirstMediaUrl('preview_images') }}"
+                            >
+                            <source src="{{ $course->getFirstMediaUrl('courses_videos') }}" type="video/mp4">
                         </video>
                     @endif
                 @endauth
