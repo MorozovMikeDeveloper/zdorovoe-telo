@@ -22,6 +22,7 @@
                     <th>Категория</th>
                     <th>Описание</th>
                     <th width="30%">Превью</th>
+                    <th></th>
                 </tr>
             </thead>
 
@@ -33,6 +34,19 @@
                     <td>{{ $course->category }}</td>
                     <td>{{ $course->description }}</td>
                     <td><img src="{{ $course->getFirstMediaUrl('preview_images', 'thumb') }}" / width="120px"></td>
+                    <td>
+
+                        <a href="{{ route('course-detail', ['course_id' => $course->id])}}">
+                            <x-adminlte-button style="width: 170px; margin: 10px" label="Редактировать курс" theme="primary"/>
+                        </a>
+
+                        <form action="{{ route('course-delete', $course->id) }}" method="post">
+                            @method('DELETE')
+                            @csrf
+                            <x-adminlte-button style="width: 170px; margin: 10px" type="submit" label="Удалить курс" theme="danger"/>
+                        </form>
+
+                    </td>
                 </tr>
                 @endforeach
             </tbody>
