@@ -24,12 +24,19 @@ $('.close-modal').on('click', () => {
 })
 
 function handler() {
+    const page = $(this).data('page')
+    if(page){
+        setActivePage(page)
+        history.pushState({ page }, page)
+    }
+}
+
+function setActivePage(page){
     $('.header-menu__link:not(.header-menu__link--auth)').off('click', handler)
     $('.header-menu__link').removeClass('active')
     $('.header__menu--mobile').removeClass('header__menu--open')
     $('body').css({overflowY: 'scroll'})
     $('.overlay').fadeOut(500);
-    const page = $(this).data('page')
     $('.page.page--active').fadeOut({
         duration: 500,
         complete: () => {
@@ -37,32 +44,9 @@ function handler() {
             if(page != 'home-page'){
                 $(`.header__menu`).addClass('header__menu--dark')
             }
-            $('.page.page--active').removeClass('page--active')
             $(`#${page}`).fadeIn({
                 duration: 500,
                 complete: () => {
-                    $(`#${page}`).addClass('page--active')
-                    $('.header-menu__link:not(.header-menu__link--auth)').on('click', handler)
-                }
-            })
-        }
-    })
-
-    $(this).addClass('active')
-}
-
-function setActivePage(page){
-    $('.header-menu__link:not(.header-menu__link--auth)').off('click', handler)
-    $('.page.page--active').fadeOut({
-        duration: 500,
-        complete: () => {
-            $(`#${page}`).fadeIn({
-                duration: 500,
-                complete: () => {
-                    $(`.header__menu`).removeClass('header__menu--dark')
-                    if(page != 'home-page'){
-                        $(`.header__menu`).addClass('header__menu--dark')
-                    }
                     $(`#${page}`).addClass('page--active')
                     $('.header-menu__link:not(.header-menu__link--auth)').on('click', handler)
                 }
@@ -71,9 +55,19 @@ function setActivePage(page){
             $(`a[data-page=${page}]`).addClass('active')
         }
     }).removeClass('page--active')
+
+}
+
+function popstateHandler(event){
+    if(event.state){
+        setActivePage(event.state.page)
+    }
 }
 
 $(() => {
+
+    history.pushState({ page: 'home-page'}, 'home-page')
+    window.onpopstate = popstateHandler
 
     const hash = window.location.hash.substr(1);
 

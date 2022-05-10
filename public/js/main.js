@@ -9111,6 +9111,17 @@ jquery__WEBPACK_IMPORTED_MODULE_1___default()('.close-modal').on('click', functi
 });
 
 function handler() {
+  var page = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).data('page');
+
+  if (page) {
+    setActivePage(page);
+    history.pushState({
+      page: page
+    }, page);
+  }
+}
+
+function setActivePage(page) {
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').off('click', handler);
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link').removeClass('active');
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header__menu--mobile').removeClass('header__menu--open');
@@ -9118,7 +9129,6 @@ function handler() {
     overflowY: 'scroll'
   });
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.overlay').fadeOut(500);
-  var page = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).data('page');
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.page.page--active').fadeOut({
     duration: 500,
     complete: function complete() {
@@ -9128,33 +9138,9 @@ function handler() {
         jquery__WEBPACK_IMPORTED_MODULE_1___default()(".header__menu").addClass('header__menu--dark');
       }
 
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()('.page.page--active').removeClass('page--active');
       jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).fadeIn({
         duration: 500,
         complete: function complete() {
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).addClass('page--active');
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').on('click', handler);
-        }
-      });
-    }
-  });
-  jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).addClass('active');
-}
-
-function setActivePage(page) {
-  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').off('click', handler);
-  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.page.page--active').fadeOut({
-    duration: 500,
-    complete: function complete() {
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).fadeIn({
-        duration: 500,
-        complete: function complete() {
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()(".header__menu").removeClass('header__menu--dark');
-
-          if (page != 'home-page') {
-            jquery__WEBPACK_IMPORTED_MODULE_1___default()(".header__menu").addClass('header__menu--dark');
-          }
-
           jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).addClass('page--active');
           jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').on('click', handler);
         }
@@ -9165,7 +9151,17 @@ function setActivePage(page) {
   }).removeClass('page--active');
 }
 
+function popstateHandler(event) {
+  if (event.state) {
+    setActivePage(event.state.page);
+  }
+}
+
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
+  history.pushState({
+    page: 'home-page'
+  }, 'home-page');
+  window.onpopstate = popstateHandler;
   var hash = window.location.hash.substr(1);
   var pages = ['about-page', 'course-page', 'reviews-page'];
 
