@@ -18,7 +18,7 @@
                 @foreach($orders as $order)
                 <tr>
                     <td>{{ $order->id }}</td>
-                    <td>{{ $order->paid_at }}</td>
+                    <td>{{ $order->updated_at }}</td>
                     <td>{{ $order->course()->name }}</td>
                     <td>{{ $order->status }}</td>
                 </tr>

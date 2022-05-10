@@ -10,12 +10,7 @@
     <form action="create-course" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <x-adminlte-input name="name" label="Название" placeholder="Название курса"
-                              fgroup-class="col-md-6" disable-feedback/>
-        </div>
-
-        <div class="row">
-            <x-adminlte-input name="slug" label="Урл" placeholder="Урл курса"
+            <x-adminlte-input name="name" label="Название курса" placeholder="Название курса"
                               fgroup-class="col-md-6" disable-feedback/>
         </div>
 
@@ -37,6 +32,11 @@
         <div class="row">
             <x-adminlte-textarea name="description" label="Описание" placeholder="Введите описание..."
                                  fgroup-class="col-md-6" disable-feedback/>
+        </div>
+
+        <div class="row">
+            <x-adminlte-input name="cost" label="Стоимость курса" placeholder="Стоимость курса"
+                              fgroup-class="col-md-6" disable-feedback/>
         </div>
 
         <x-adminlte-button class="btn-flat" type="submit" label="Создать" theme="success" icon="fas fa-lg fa-save"/>

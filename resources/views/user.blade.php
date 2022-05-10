@@ -13,26 +13,27 @@
         <h3>Приобретённые курсы</h3>
 
         <div class="container mt-5 justify-content-around">
-            <table class="table-responsive">
-                <thead>
-                    <tr>
-                        <th>#</th>
-                        <th>Дата</th>
-                        <th>Курс</th>
-                        <th>Статус</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($courses as $course)
-                        <tr>
-                            <td>{{ $course->id }}</td>
-                            <td>{{ $course->paid_at }}</td>
-                            <td>{{ $course->name }}</td>
-                            <td>{{ $course->status }}</td>
-                        </tr>
-                    @endforeach
-                </tbody>
-            </table>
+            <div class="row gy-2">
+                    @forelse($courses as $course)
+                        <div class="col-md-4">
+                            <div class="card" style="width:100%">
+
+                                <img src="{{ $course->course_model->getFirstMediaUrl('preview_images') }}" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">{{ $course->name }}</h5>
+                                    <p class="card-text">{{ $course->description }}</p>
+                                    <div class="d-grid gap-2">
+                                        <a href="{{ route('courses.show', $course->slug) }}" class="btn btn-primary w-100">Материалы курса</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    @empty
+                        <div class="alert alert-default text-center">
+                            Оплаченные курсы не найдены
+                        </div>
+                    @endforelse
+            </div>
         </div>
     </div>
 </div>
