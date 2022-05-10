@@ -9082,6 +9082,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! bootstrap */ "./node_modules/bootstrap/dist/js/bootstrap.esm.js");
 /* harmony import */ var video_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! video.js */ "./node_modules/video.js/dist/video.es.js");
+var _this = undefined;
+
 
 
 
@@ -9107,40 +9109,44 @@ jquery__WEBPACK_IMPORTED_MODULE_1___default()('.close-modal').on('click', functi
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.overlay').fadeOut(500);
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.modal').removeClass('modal--show');
 });
-jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
-  var hash = window.location.hash.substr(1);
-  var pages = ['about-page', 'course-page', 'reviews-page'];
 
-  if (pages.includes(hash)) {
-    jquery__WEBPACK_IMPORTED_MODULE_1___default()('.page.page--active').removeClass('page--active');
-    jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(hash)).fadeIn({
-      duration: 500,
-      complete: function complete() {
-        jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(hash)).addClass('page--active');
-        flag = true;
+function handler() {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').off('click', handler);
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link').removeClass('active');
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header__menu--mobile').removeClass('header__menu--open');
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('body').css({
+    overflowY: 'scroll'
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.overlay').fadeOut(500);
+  var page = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).data('page');
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.page.page--active').fadeOut({
+    duration: 500,
+    complete: function complete() {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()(".header__menu").removeClass('header__menu--dark');
+
+      if (page != 'home-page') {
+        jquery__WEBPACK_IMPORTED_MODULE_1___default()(".header__menu").addClass('header__menu--dark');
       }
-    });
-    jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header__menu a').removeClass('active');
-    jquery__WEBPACK_IMPORTED_MODULE_1___default()("a[data-page=".concat(hash, "]")).addClass('active');
-  } else {
-    jquery__WEBPACK_IMPORTED_MODULE_1___default()('#home-page').fadeIn(500);
-  }
 
-  (0,video_js__WEBPACK_IMPORTED_MODULE_3__["default"])(document.querySelector('.video-js'));
-  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#curryear').text(new Date().getFullYear());
-  var flag = true;
-
-  var handler = function handler() {
-    if (flag) {
-      flag = false;
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link').removeClass('active');
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header__menu--mobile').removeClass('header__menu--open');
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()('body').css({
-        overflowY: 'scroll'
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()('.page.page--active').removeClass('page--active');
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).fadeIn({
+        duration: 500,
+        complete: function complete() {
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).addClass('page--active');
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').on('click', handler);
+        }
       });
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()('.overlay').fadeOut(500);
-      var page = jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).data('page');
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()('.page.page--active').fadeOut({
+    }
+  });
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).addClass('active');
+}
+
+function setActivePage(page) {
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').off('click', handler);
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('.page.page--active').fadeOut({
+    duration: 500,
+    complete: function complete() {
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).fadeIn({
         duration: 500,
         complete: function complete() {
           jquery__WEBPACK_IMPORTED_MODULE_1___default()(".header__menu").removeClass('header__menu--dark');
@@ -9149,19 +9155,31 @@ jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
             jquery__WEBPACK_IMPORTED_MODULE_1___default()(".header__menu").addClass('header__menu--dark');
           }
 
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.page.page--active').removeClass('page--active');
-          jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).fadeIn({
-            duration: 500,
-            complete: function complete() {
-              jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).addClass('page--active');
-              flag = true;
-            }
-          });
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()("#".concat(page)).addClass('page--active');
+          jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').on('click', handler);
         }
       });
-      jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).addClass('active');
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header__menu a').removeClass('active');
+      jquery__WEBPACK_IMPORTED_MODULE_1___default()("a[data-page=".concat(page, "]")).addClass('active');
     }
-  };
+  }).removeClass('page--active');
+}
+
+jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
+  var hash = window.location.hash.substr(1);
+  var pages = ['about-page', 'course-page', 'reviews-page'];
+
+  if (pages.includes(hash)) {
+    setActivePage(hash);
+  } else {
+    jquery__WEBPACK_IMPORTED_MODULE_1___default()('#home-page').fadeIn(500);
+  }
+
+  if (jquery__WEBPACK_IMPORTED_MODULE_1___default()('.video-js').length) {
+    (0,video_js__WEBPACK_IMPORTED_MODULE_3__["default"])(document.querySelector('.video-js'));
+  }
+
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#curryear').text(new Date().getFullYear());
 
   var openModal = function openModal() {
     jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header__menu--mobile').removeClass('header__menu--open');
@@ -9171,6 +9189,8 @@ jquery__WEBPACK_IMPORTED_MODULE_1___default()(function () {
 
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link:not(.header-menu__link--auth)').on('click', handler);
   jquery__WEBPACK_IMPORTED_MODULE_1___default()('.header-menu__link--auth').on('click', openModal);
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#about-btn').on('click', setActivePage.bind(_this, 'about-page'));
+  jquery__WEBPACK_IMPORTED_MODULE_1___default()('#course-btn').on('click', setActivePage.bind(_this, 'course-page'));
 });
 jquery__WEBPACK_IMPORTED_MODULE_1___default()(window).on("scroll", function () {
   if (jquery__WEBPACK_IMPORTED_MODULE_1___default()(this).scrollTop() > 40) {

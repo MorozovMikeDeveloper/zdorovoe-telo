@@ -36,7 +36,7 @@
                                 и объясните, в чем заключается ваше преимущество
                                 перед конкурентами. Используйте ключевые слова, по которым сайт найдут в поисковых
                                 системах.</p>
-                        </div><a class="btn-primary" href="">Подробнее</a>
+                        </div><a class="btn-primary" href="#" id="about-btn">Подробнее</a>
                     </div>
                 </div>
             </div>
@@ -60,7 +60,7 @@
                     @empty
                         <h3 class="text-center">Курсы ещё не созданы</h3>
                     @endforelse
-                    <a class="btn-primary" href="">Смотреть все</a>
+                    <a class="btn-primary" href="#" id="course-btn">Смотреть все</a>
                 </div>
             </div>
         </div>
