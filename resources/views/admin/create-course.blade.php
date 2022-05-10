@@ -10,7 +10,7 @@
     <form action="create-course" method="post" enctype="multipart/form-data">
         @csrf
         <div class="row">
-            <x-adminlte-input name="name" label="Name" placeholder="Название курса"
+            <x-adminlte-input name="name" label="Название" placeholder="Название курса"
                               fgroup-class="col-md-6" disable-feedback/>
         </div>
 
