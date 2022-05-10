@@ -60,6 +60,9 @@ function setActivePage(page){
 
 function popstateHandler(event){
     if(event.state){
+        if(event.state.page == 'home-page'){
+            return false
+        }
         setActivePage(event.state.page)
     }
 }
