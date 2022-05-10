@@ -61,7 +61,8 @@ function setActivePage(page){
 function popstateHandler(event){
     if(event.state){
         if(event.state.page == 'home-page'){
-            return false
+            history.pushState( { panel: 'home'}, `home` )
+            return
         }
         setActivePage(event.state.page)
     }
