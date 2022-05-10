@@ -34,16 +34,24 @@
             </div>
         </div>
     </header>
-    <main style="padding-top: 80px">
+    <main>
         @yield('content')
     </main>
     <footer class="text-center">© <span id="curryear"></span> Физиотерапевт Илья Денисов. Сайт создан <a
-            href="https://t.me/kekovina">@kekovina</a></footer>
+            href="https://t.me/kekovina">@kekovina</a> и <a
+            href="https://t.me/MorozovMike">@MorozovMike</a></footer>
     <div class="overlay"></div>
-    <div class="header__menu--mobile"><a class="header-menu__link" href="#" data-page="home-page">Главная</a> <a
-            class="header-menu__link" href="#" data-page="about-page">Обо мне</a> <a class="header-menu__link" href="#"
-            data-page="course-page">Курсы</a> <a class="header-menu__link" href="#" data-page="reviews-page">Отзывы</a>
-        <a class="header-menu__link header-menu__link--auth" href="#" data-page="contact-page">Кабинет</a>
+    <div class="header__menu--mobile">
+        <a class="header-menu__link" href="/" data-page="home-page">Главная</a>
+        <a class="header-menu__link" href="/#about-page" data-page="about-page">Обо мне</a>
+        <a class="header-menu__link" href="/#course-page" data-page="course-page">Курсы</a>
+        <a class="header-menu__link" href="/#reviews-page" data-page="reviews-page">Отзывы</a>
+        @if(!Auth::check())
+            <a class="header-menu__link" href="/login">Войти</a>
+            <a class="header-menu__link" href="/signup">Регистрация</a>
+        @else
+            <a class="header-menu__link" href="/user">Кабинет</a>
+        @endif
     </div>
 </body>
 <script src="/js/main.js"></script>

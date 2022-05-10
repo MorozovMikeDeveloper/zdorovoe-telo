@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container">
+    <div class="container" style="margin-top: 80px">
         <div class="row">
             <div class="col-md-4">
                 <img class="img-fluid" src="{{ $course->getFirstMediaUrl('preview_images') }}" alt="Course preview">
@@ -17,8 +17,16 @@
                         <div class="course-card__price">{{ $course->cost }} руб.</div>
                     </div>
                     <div class="my-md-4">
-                        <a class="btn-primary" href="{{ route('login_form') }}">Приобрести</a>
+                        <a class="btn-primary d-block" href="{{ route('login_form') }}">Приобрести</a>
                     </div>
+                    <video id="my-player" class="video-js vjs-theme-forest"
+                           controls
+                           style="width: 100%;
+                            height: 100%;
+                            min-height: 100px;"
+                    >
+                        <source src="//vjs.zencdn.net/v/oceans.mp4" type="video/mp4">
+                    </video>
                 @endguest
 
                 @auth
@@ -27,7 +35,7 @@
                         <div class="course-card__price">{{ $course->cost }} руб.</div>
                     </div>
                     <div class="my-md-4">
-                        <a class="btn-primary" href="">Приобрести</a>
+                        <a class="btn-primary d-block" href="">Приобрести</a>
                     </div>
 
                     @elseif($content)

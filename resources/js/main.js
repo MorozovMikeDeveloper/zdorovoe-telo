@@ -1,6 +1,7 @@
 import '../scss/main.scss'
 import $ from 'jquery';
 import 'bootstrap';
+import videojs from 'video.js';
 
 global.jQuery = $;
 global.$ = $;
@@ -23,7 +24,29 @@ $('.close-modal').on('click', () => {
 })
 
 $(() => {
-    $('#home-page').fadeIn(500)
+
+    const hash = window.location.hash.substr(1);
+
+    const pages = ['about-page', 'course-page', 'reviews-page']
+
+    if(pages.includes(hash)){
+        $('.page.page--active').removeClass('page--active')
+
+        $(`#${hash}`).fadeIn({
+            duration: 500,
+            complete: () => {
+                $(`#${hash}`).addClass('page--active')
+                flag = true
+            }
+        })
+        $('.header__menu a').removeClass('active')
+        $(`a[data-page=${hash}]`).addClass('active')
+    } else {
+        $('#home-page').fadeIn(500)
+    }
+
+    videojs(document.querySelector('.video-js'));
+
     $('#curryear').text(new Date().getFullYear())
     var flag = true;
 
