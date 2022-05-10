@@ -2,7 +2,7 @@
 
 
 @section('content')
-    <div class="container">
+    <div class="container" style="margin-top: 80px">
         <div class="row">
             <div class="col-md-4">
                 <img class="img-fluid" src="{{ $course->getFirstMediaUrl('preview_images') }}" alt="Course preview">
@@ -35,8 +35,14 @@
                     </div>
 
                     @elseif($content)
-                        <video width="420" height="340" controls>
-                            <source src="{{ $course->getFirstMediaUrl('courses_videos') }}">
+                        <video id="my-player" class="video-js vjs-theme-forest"
+                                controls
+                                style="width: 100%;
+                                height: 100%;
+                                min-height: 100px;"
+                               poster="{{ $course->getFirstMediaUrl('preview_images') }}"
+                            >
+                            <source src="{{ $course->getFirstMediaUrl('courses_videos') }}" type="video/mp4">
                         </video>
                     @endif
                 @endauth

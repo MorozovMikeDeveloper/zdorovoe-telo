@@ -21,10 +21,13 @@ Route::middleware('admin')->group(function() {
 
     Route::prefix('courses')->group(function() {
         Route::get('/', [CourseController::class, 'index']);
-        Route::post('/create-course', [CourseController::class, 'store']);
         Route::get('/create-course', function() {
-            return view('admin/create-course');
+            return view('admin.create-course');
         });
+        Route::get('{course_id}', [CourseController::class, 'show'])->name('course-detail');
+        Route::post('/create-course', [CourseController::class, 'store']);
+        Route::put('/{course_id}/update', [CourseController::class, 'update'])->name('course-update');
+        Route::delete('/{course_id}/delete', [CourseController::class, 'destroy'])->name('course-delete');
     });
 
     Route::get('/logout', [SessionsController::class, 'destroy']);
