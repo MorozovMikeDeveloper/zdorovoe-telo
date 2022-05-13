@@ -38,7 +38,7 @@
                     <td><img src="{{ $course->getFirstMediaUrl('preview_images', 'thumb') }}" / width="120px"></td>
                     <td>
 
-                        <a href="{{ route('course-detail', ['course_id' => $course->id])}}">
+                        <a href="{{ route('course-detail', $course->id)}}">
                             <x-adminlte-button style="width: 170px; margin: 10px" label="Редактировать курс" theme="primary"/>
                         </a>
 

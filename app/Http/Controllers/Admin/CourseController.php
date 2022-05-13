@@ -32,8 +32,8 @@ class CourseController extends Controller
             'preview_image' => 'required',
             'course_video'  => 'required',
             'description'   => 'required',
+            'cost'          => 'required'
         ]);
-
         $course = Course::create($validateFields);
         $course->addMediaFromRequest('preview_image')->toMediaCollection('preview_images');
         $course->addMediaFromRequest('course_video')->toMediaCollection('courses_videos');
@@ -46,12 +46,9 @@ class CourseController extends Controller
         $validateFields = $request->validate([
             'name'          => 'required',
             'category'      => 'required',
-            'preview_image' => 'required',
-            'course_video'  => 'required',
             'description'   => 'required',
             'cost'          => 'required'
         ]);
-
         $course = Course::where('id', $course_id)->update($validateFields);
         $course->addMediaFromRequest('preview_image')->toMediaCollection('preview_images');
         $course->addMediaFromRequest('course_video')->toMediaCollection('courses_videos');
