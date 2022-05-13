@@ -43,16 +43,18 @@ class CourseController extends Controller
 
     public function update(Request $request, int $course_id)
     {
+
         $validateFields = $request->validate([
             'name'          => 'required',
             'category'      => 'required',
             'description'   => 'required',
             'cost'          => 'required'
         ]);
-        $course = Course::where('id', $course_id)->update($validateFields);
+        $course = Course::find($course_id);
         $course->addMediaFromRequest('preview_image')->toMediaCollection('preview_images');
         $course->addMediaFromRequest('course_video')->toMediaCollection('courses_videos');
 
+        Course::where('id', $course_id)->update($validateFields);
         return redirect('admin/courses');
     }
 

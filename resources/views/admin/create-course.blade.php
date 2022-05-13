@@ -31,7 +31,7 @@
 
         <div class="row">
             <x-adminlte-textarea name="description" label="Описание" placeholder="Введите описание..."
-                                 fgroup-class="col-md-6" disable-feedback/>
+                                 fgroup-class="col-md-6" style="resize: none" disable-feedback/>
         </div>
 
         <div class="row">

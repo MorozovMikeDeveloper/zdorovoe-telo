@@ -17,7 +17,7 @@
                         <div class="course-card__price">{{ $course->cost }} руб.</div>
                     </div>
                     <div class="my-md-4">
-                        <button class="btn-primary" href="{{ route('login_form') }}">Приобрести</button>
+                        <a class="btn-primary" href="{{ route('login_form') }}">Приобрести</a>
                     </div>
                 @endguest
 
