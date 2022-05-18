@@ -9,6 +9,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,9 +23,19 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Route::middleware('auth')->prefix('payment')->group(function(){
-    Route::post('/create', [PaymentController::class, 'create'])->name('payment_create');
-    Route::get('/notification', [PaymentController::class, 'notification'])->name('payment_notification');
+    Route::post('/create', [PaymentController::class, 'create'])->middleware('verified')->name('payment_create');
+    Route::get('/notification', [PaymentController::class, 'notification'])->middleware('verified')->name('payment_notification');
 });
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect('/home');
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/', [HomeController::class, 'index']);
 
