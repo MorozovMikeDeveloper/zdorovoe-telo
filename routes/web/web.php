@@ -21,9 +21,9 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
-Route::middleware('auth')->prefix('payment')->group(function(){
-    Route::post('/create', [PaymentController::class, 'create'])->name('payment_create');
-    Route::get('/notification', [PaymentController::class, 'notification'])->name('payment_notification');
+Route::prefix('payment')->group(function(){
+    Route::post('/create', [PaymentController::class, 'store'])->name('payment_create');
+    Route::post('/notification', [PaymentController::class, 'notification'])->name('payment_notification');
 });
 
 Route::get('/', [HomeController::class, 'index']);
