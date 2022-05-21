@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 
 class PaymentController extends Controller
 {
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $validateFields = $request->validate([
             'course_id' => 'required|int',
@@ -31,7 +31,7 @@ class PaymentController extends Controller
         if ($sign != $_REQUEST['SIGN']) die('wrong sign');
 
         $order = Order::find($_REQUEST['MERCHANT_ORDER_ID']);
-        if(!$order->status){
+        if($order->status){
             die('err');
         }
         if($order->amount != $_REQUEST['AMOUNT']){
@@ -45,7 +45,6 @@ class PaymentController extends Controller
         $order->save();
 
         die('YES');
-
     }
 
     private function getIP() {

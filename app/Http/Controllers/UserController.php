@@ -12,11 +12,12 @@ class UserController extends Controller
 {
     public function show()
     {
-        $courses = Order::where('status', 1)->join(
-            'courses',
-            'orders.course_id',
-            '=',
-            'courses.id')->get();
+        $courses = Order::where('status', 1)
+            ->where('user_id', Auth::user()->id)
+            ->join('courses',
+                   'orders.course_id',
+                   '=',
+                   'courses.id')->get();
 
         foreach ($courses as $course){
             $course->course_model = Course::find($course->id);

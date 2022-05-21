@@ -6,6 +6,7 @@ use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvid
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Auth\Notifications\VerifyEmail;
 use Illuminate\Notifications\Messages\MailMessage;
+use Illuminate\Auth\Notifications\ResetPassword;
 
 class AuthServiceProvider extends ServiceProvider
 {
@@ -31,6 +32,9 @@ class AuthServiceProvider extends ServiceProvider
                 ->subject(env('APP_NAME') . ' - подтверждение email')
                 ->line('Нажмите на кнопку ниже для подтверждения электронной почты')
                 ->action('Подтвердить', $url);
+
+        ResetPassword::createUrlUsing(function ($user, string $token) {
+            return 'https://example.com/reset-password?token='.$token;
         });
     }
 }
