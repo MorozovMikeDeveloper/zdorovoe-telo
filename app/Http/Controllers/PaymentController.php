@@ -45,7 +45,6 @@ class PaymentController extends Controller
         $order->save();
 
         die('YES');
-
     }
 
     private function getIP() {

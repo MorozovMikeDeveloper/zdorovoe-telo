@@ -27,6 +27,9 @@
                         <input type="password" class="form-control" name="password" id="password">
                     </div>
                     <div>
+                        Забыли пароль? <a href="{{ route('password.request') }}">Сбросить</a>
+                    </div>
+                    <div>
                         Впервые здесь? <a href="{{ route('signup_form') }}">Зарегистрируйтесь</a>
                     </div>
                     <button type="submit" class="btn btn-primary w-100">Войти</button>
