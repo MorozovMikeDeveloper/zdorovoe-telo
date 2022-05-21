@@ -67,6 +67,8 @@ Route::get('/courses/{slug}', [CatalogController::class, 'show'])->name('courses
 
 Route::get('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
 
+Auth::routes(['verify' => true]);
+
 // Сброс пароля - вынести отдельно весь функционал @TODO
 Route::get('/forgot-password', function () {
     return view('auth.forgot-password');

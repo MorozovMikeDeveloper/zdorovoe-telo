@@ -1,3 +1,9 @@
-Для смены пароля перейдите по следующей ссылке
+@component('mail::message')
 
-<a href="{{ $url }}">{{ $url }}</a>
+@component('mail::button', ['url' => $url])
+Сменить пароль
+@endcomponent
+
+<p>Если кнопа не работает, перейдите по ссылке <a href="{{ $url }}">{{ $url }}</a></p>
+
+@endcomponent
