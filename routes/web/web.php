@@ -9,6 +9,7 @@ use App\Http\Controllers\CatalogController;
 use App\Http\Controllers\SocialController;
 use App\Http\Controllers\PaymentController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Auth\Events\PasswordReset;
@@ -30,6 +31,16 @@ Route::prefix('payment')->group(function(){
     Route::post('/create', [PaymentController::class, 'store'])->name('payment_create');
     Route::post('/notification', [PaymentController::class, 'notification'])->name('payment_notification');
 });
+
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
+
+Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
+    $request->fulfill();
+
+    return redirect(route('user'));
+})->middleware(['auth', 'signed'])->name('verification.verify');
 
 Route::get('/', [HomeController::class, 'index']);
 
