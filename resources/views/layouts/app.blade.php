@@ -21,8 +21,8 @@
                     <li><a class="header-menu__link" href="#" data-page="course-page">Курсы</a></li>
                     <li><a class="header-menu__link" href="#" data-page="reviews-page">Отзывы</a></li>
                     @if(!Auth::check())
-                    <li><a class="header-menu__link" href="/login">Войти</a></li>
-                    <li><a class="header-menu__link" href="/signup">Регистрация</a></li>
+                    <li><a class="header-menu__link" href="{{ route('login_form') }}">Войти</a></li>
+                    <li><a class="header-menu__link" href="{{ route('signup_form') }}">Регистрация</a></li>
                     @else
                     <li><a class="header-menu__link" href="/user">Кабинет</a></li>
                     <li><a class="header-menu__link" href="/logout">Выйти</a></li>

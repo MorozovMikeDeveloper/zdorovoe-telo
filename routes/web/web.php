@@ -27,6 +27,8 @@ use Illuminate\Support\Str;
 |
 */
 
+Auth::routes(['verify' => true]);
+
 Route::prefix('payment')->group(function(){
     Route::post('/create', [PaymentController::class, 'store'])->name('payment_create');
     Route::post('/notification', [PaymentController::class, 'notification'])->name('payment_notification');
@@ -77,8 +79,6 @@ Route::get('/courses', [CatalogController::class, 'index']);
 Route::get('/courses/{slug}', [CatalogController::class, 'show'])->name('courses.show');
 
 Route::get('/logout', [SessionsController::class, 'destroy'])->middleware('auth');
-
-Auth::routes(['verify' => true]);
 
 // Сброс пароля - вынести отдельно весь функционал @TODO
 Route::get('/forgot-password', function () {
