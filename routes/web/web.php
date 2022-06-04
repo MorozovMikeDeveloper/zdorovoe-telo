@@ -98,7 +98,7 @@ Route::post('/forgot-password', function (Request $request) {
 })->middleware('guest')->name('password.email');
 
 Route::get('/reset-password/{token}', function ($token) {
-    return view('auth.reset-password', ['token' => $token]);
+    return view('auth.passwords.reset', ['token' => $token]);
 })->middleware('guest')->name('password.reset');
 
 Route::post('/reset-password', function (Request $request) {
