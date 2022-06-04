@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use Illuminate\Auth\Events\Registered;
 
 use App\Http\Requests\SignUpRequest;
 
@@ -32,7 +33,7 @@ class RegisterController extends Controller
 
         if($user){
             auth()->login($user);
-
+            event(new Registered($user));
             return redirect(route('user'));
         }
 

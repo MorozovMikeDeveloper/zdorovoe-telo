@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Auth\Notifications\ResetPassword;
 use App\Notifications\ResetPasswordNotification;
 
-class User extends Authenticatable implements CanResetPasswordContract
+class User extends Authenticatable implements MustVerifyEmail, CanResetPasswordContract
 {
     use HasApiTokens, HasFactory, Notifiable, CanResetPassword;
 
