@@ -60,7 +60,7 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPasswordC
 
     public function sendPasswordResetNotification($token): void
     {
-        $url = '?token='.$token;
+        $url = $token;
 
         $this->notify(new ResetPasswordNotification($url));
     }
