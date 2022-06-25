@@ -8,8 +8,8 @@
 
 @section('content')
 <form action="{{ route('course-update', $course->id) }}" method="post" enctype="multipart/form-data">
-    @csrf
     @method('PUT')
+    @csrf
     <div class="row">
         <x-adminlte-input name="name" label="Название" placeholder="Название курса" value="{{ $course->name }}"
                           fgroup-class="col-md-6" disable-feedback/>
@@ -42,7 +42,7 @@
 
     <div class="row">
         <x-adminlte-textarea name="description" label="Описание" placeholder="Введите описание..."
-                             fgroup-class="col-md-6" disable-feedback>
+                             fgroup-class="col-md-6" style="resize: none" disable-feedback>
             {{ $course->description }}
         </x-adminlte-textarea>
     </div>

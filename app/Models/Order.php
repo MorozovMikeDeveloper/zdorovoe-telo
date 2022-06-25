@@ -13,11 +13,14 @@ class Order extends Model
         'user_id',
         'payment_id',
         'course_id',
-        'status'
+        'status',
+        'total',
+        'amount'
     ];
 
     protected $casts = [
-        'paid_at' => 'datetime'
+        'updated_at' => 'datetime',
+        'created_at' => 'datetime'
     ];
 
     public function course(){

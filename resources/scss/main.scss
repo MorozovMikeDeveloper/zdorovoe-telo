@@ -1,6 +1,6 @@
 @import "_vendor.scss";
 @import "_fonts.scss";
-
+@import "video.js";
 @import "~bootstrap/scss/bootstrap";
 @import "responsive";
 
@@ -8,6 +8,7 @@
 @import "content";
 // @import "footer";
 @import "modal";
+@import "payment";
 
 @import '~@fortawesome/fontawesome-free/scss/fontawesome';
 @import '~@fortawesome/fontawesome-free/scss/regular';
@@ -80,6 +81,7 @@ main{
     margin: 10px auto;
     padding: 14px 10px;
     text-decoration: none;
+    border: none;
     &:hover{
         transition: .4s ease;
         background-color: darken(rgb(36, 220, 157), 10%);

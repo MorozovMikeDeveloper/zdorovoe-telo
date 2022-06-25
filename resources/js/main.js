@@ -1,6 +1,7 @@
 import '../scss/main.scss'
 import $ from 'jquery';
 import 'bootstrap';
+import videojs from 'video.js';
 
 global.jQuery = $;
 global.$ = $;
@@ -22,40 +23,71 @@ $('.close-modal').on('click', () => {
     $('.modal').removeClass('modal--show')
 })
 
-$(() => {
-    $('#home-page').fadeIn(500)
-    $('#curryear').text(new Date().getFullYear())
-    var flag = true;
+function handler() {
+    const page = $(this).data('page')
+    if(page){
+        setActivePage(page)
+        history.pushState({ page }, page)
+    }
+}
 
-    const handler = function() {
-        if(flag){
-            flag = false
-            $('.header-menu__link').removeClass('active')
-            $('.header__menu--mobile').removeClass('header__menu--open')
-            $('body').css({overflowY: 'scroll'})
-            $('.overlay').fadeOut(500);
-            const page = $(this).data('page')
-            $('.page.page--active').fadeOut({
+function setActivePage(page){
+    $('.header-menu__link:not(.header-menu__link--auth)').off('click', handler)
+    $('.header-menu__link').removeClass('active')
+    $('.header__menu--mobile').removeClass('header__menu--open')
+    $('body').css({overflowY: 'scroll'})
+    $('.overlay').fadeOut(500);
+    $('.page.page--active').fadeOut({
+        duration: 500,
+        complete: () => {
+            $(`.header__menu`).removeClass('header__menu--dark')
+            if(page != 'home-page'){
+                $(`.header__menu`).addClass('header__menu--dark')
+            }
+            $(`#${page}`).fadeIn({
                 duration: 500,
                 complete: () => {
-                    $(`.header__menu`).removeClass('header__menu--dark')
-                    if(page != 'home-page'){
-                        $(`.header__menu`).addClass('header__menu--dark')
-                    }
-                    $('.page.page--active').removeClass('page--active')
-                    $(`#${page}`).fadeIn({
-                        duration: 500,
-                        complete: () => {
-                            $(`#${page}`).addClass('page--active')
-                            flag = true
-                        }
-                    })
+                    $(`#${page}`).addClass('page--active')
+                    $('.header-menu__link:not(.header-menu__link--auth)').on('click', handler)
                 }
             })
-
-            $(this).addClass('active')
+            $('.header__menu a').removeClass('active')
+            $(`a[data-page=${page}]`).addClass('active')
         }
+    }).removeClass('page--active')
+
+}
+
+function popstateHandler(event){
+    if(event.state){
+        if(event.state.page == 'home-page'){
+            history.pushState( { panel: 'home'}, `home` )
+            return
+        }
+        setActivePage(event.state.page)
     }
+}
+
+$(() => {
+
+    history.pushState({ page: 'home-page'}, 'home-page')
+    window.onpopstate = popstateHandler
+
+    const hash = window.location.hash.substr(1);
+
+    const pages = ['about-page', 'course-page', 'reviews-page']
+
+    if(pages.includes(hash)){
+        setActivePage(hash)
+    } else {
+        $('#home-page').fadeIn(500)
+    }
+
+    if($('.video-js').length){
+        videojs(document.querySelector('.video-js'));
+    }
+
+    $('#curryear').text(new Date().getFullYear())
 
     const openModal = () => {
         $('.header__menu--mobile').removeClass('header__menu--open')
@@ -65,6 +97,9 @@ $(() => {
 
     $('.header-menu__link:not(.header-menu__link--auth)').on('click', handler)
     $('.header-menu__link--auth').on('click', openModal)
+
+    $('#about-btn').on('click', setActivePage.bind(this, 'about-page'))
+    $('#course-btn').on('click', setActivePage.bind(this, 'course-page'))
 })
 
 $(window).on("scroll", function() {

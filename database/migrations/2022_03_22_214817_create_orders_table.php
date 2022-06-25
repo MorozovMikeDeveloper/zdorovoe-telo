@@ -16,11 +16,13 @@ return new class extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->references('id')->on('users');
-            $table->integer('payment_id');
+            $table->integer('payment_id')->default(0);
+            $table->float('total')->default(0);
+            $table->float('amount')->default(0);
             $table->foreignId('course_id')->references('id')->on('courses');
-            $table->boolean('status');
-            $table->timestamps();
-            $table->timestamp('paid_at');
+            $table->integer('status')->default(0);
+            $table->timestamp('created_at')->default(DB::raw('CURRENT_TIMESTAMP'));
+            $table->timestamp('updated_at')->default(DB::raw('CURRENT_TIMESTAMP'));
         });
     }
 

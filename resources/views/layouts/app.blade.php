@@ -6,7 +6,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}" />
-    <title>Document</title>
+    <title>Спорт - это жизнь!</title>
+    <link rel="icon" href="{{ asset('img/favicon.svg') }}">
     <link href="css/main.css" rel="stylesheet">
 </head>
 
@@ -20,8 +21,8 @@
                     <li><a class="header-menu__link" href="#" data-page="course-page">Курсы</a></li>
                     <li><a class="header-menu__link" href="#" data-page="reviews-page">Отзывы</a></li>
                     @if(!Auth::check())
-                    <li><a class="header-menu__link" href="/login">Войти</a></li>
-                    <li><a class="header-menu__link" href="/signup">Регистрация</a></li>
+                    <li><a class="header-menu__link" href="{{ route('login_form') }}">Войти</a></li>
+                    <li><a class="header-menu__link" href="{{ route('signup_form') }}">Регистрация</a></li>
                     @else
                     <li><a class="header-menu__link" href="/user">Кабинет</a></li>
                     <li><a class="header-menu__link" href="/logout">Выйти</a></li>
@@ -41,12 +42,20 @@
         @yield('content')
     </main>
     <footer class="text-center">© <span id="curryear"></span> Физиотерапевт Илья Денисов. Сайт создан <a
-            href="https://t.me/kekovina">@kekovina</a></footer>
+            href="https://t.me/kekovina">@kekovina</a> и <a
+            href="https://t.me/MorozovMike">@MorozovMike</a></footer>
     <div class="overlay"></div>
-    <div class="header__menu--mobile"><a class="header-menu__link" href="#" data-page="home-page">Главная</a> <a
-            class="header-menu__link" href="#" data-page="about-page">Обо мне</a> <a class="header-menu__link" href="#"
-            data-page="course-page">Курсы</a> <a class="header-menu__link" href="#" data-page="reviews-page">Отзывы</a>
-        <a class="header-menu__link header-menu__link--auth" href="#" data-page="contact-page">Кабинет</a>
+    <div class="header__menu--mobile">
+        <a class="header-menu__link" href="#" data-page="home-page">Главная</a>
+        <a class="header-menu__link" href="#" data-page="about-page">Обо мне</a>
+        <a class="header-menu__link" href="#" data-page="course-page">Курсы</a>
+        <a class="header-menu__link" href="#" data-page="reviews-page">Отзывы</a>
+        @if(!Auth::check())
+            <a class="header-menu__link" href="/login">Войти</a>
+            <a class="header-menu__link" href="/signup">Регистрация</a>
+        @else
+            <a class="header-menu__link" href="/user">Кабинет</a>
+        @endif
     </div>
 </body>
 <script src="js/main.js"></script>

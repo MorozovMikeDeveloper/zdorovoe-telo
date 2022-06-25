@@ -21,6 +21,7 @@
                     <th>Название</th>
                     <th>Категория</th>
                     <th>Описание</th>
+                    <th>Стоимость</th>
                     <th width="30%">Превью</th>
                     <th></th>
                 </tr>
@@ -33,10 +34,11 @@
                     <td>{{ $course->name }}</td>
                     <td>{{ $course->category }}</td>
                     <td>{{ $course->description }}</td>
+                    <td>{{ $course->cost }} руб.</td>
                     <td><img src="{{ $course->getFirstMediaUrl('preview_images', 'thumb') }}" / width="120px"></td>
                     <td>
 
-                        <a href="{{ route('course-detail', ['course_id' => $course->id])}}">
+                        <a href="{{ route('course-detail', $course->id)}}">
                             <x-adminlte-button style="width: 170px; margin: 10px" label="Редактировать курс" theme="primary"/>
                         </a>
 

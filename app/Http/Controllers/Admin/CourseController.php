@@ -32,6 +32,7 @@ class CourseController extends Controller
             'preview_image' => 'required',
             'course_video'  => 'required',
             'description'   => 'required',
+            'cost'          => 'required'
         ]);
 
         $course = Course::create($validateFields);
@@ -44,18 +45,24 @@ class CourseController extends Controller
     public function update(Request $request, int $course_id)
     {
         $validateFields = $request->validate([
-            'name'          => 'required',
-            'category'      => 'required',
-            'preview_image' => 'required',
-            'course_video'  => 'required',
-            'description'   => 'required',
-            'cost'          => 'required'
+            'name'        => 'required',
+            'category'    => 'required',
+            'description' => 'required',
+            'cost'        => 'required'
         ]);
 
-        $course = Course::where('id', $course_id)->update($validateFields);
-        $course->addMediaFromRequest('preview_image')->toMediaCollection('preview_images');
-        $course->addMediaFromRequest('course_video')->toMediaCollection('courses_videos');
+        $course = Course::find($course_id);
 
+        $course->getFirstMedia('preview_images')?->delete();
+        $course->getFirstMedia('courses_videos')?->delete();
+
+        $course->addMediaFromRequest('preview_image')
+            ->toMediaCollection('preview_images');
+
+        $course->addMediaFromRequest('course_video')
+            ->toMediaCollection('courses_videos');
+
+        Course::where('id', $course_id)->update($validateFields);
         return redirect('admin/courses');
     }
 
