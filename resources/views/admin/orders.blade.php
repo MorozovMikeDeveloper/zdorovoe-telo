@@ -23,7 +23,7 @@
                 <tr>
                     <td>{{ $order->id }}</td>
                     <td>{{ $order->updated_at }}</td>
-                    <td>{{ $order->course()->name }}</td>
+                    <td>{{ $order->course->name }}</td>
                     <td>{{ $order->status === 0 ? 'Не оплачен' : 'Оплачен'  }}</td>
                 </tr>
                 @endforeach
