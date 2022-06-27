@@ -12,15 +12,6 @@ class Page extends Model
 
     protected $guarded = [];
 
-//    public function sluggable(): array
-//    {
-//        return [
-//            'slug' => [
-//                'source' => 'name'
-//            ]
-//        ];
-//    }
-
     public function contents()
     {
         return $this->hasMany(Content::class);
