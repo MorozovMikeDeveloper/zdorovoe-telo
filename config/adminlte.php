@@ -251,8 +251,11 @@ return [
             'text'        => 'Страницы',
             'url'         => 'admin/pages',
             'icon'        => 'far fa-fw fa-file',
-            'label'       => 4,
-            'label_color' => 'success',
+        ],
+        [
+            'text' => 'Контент',
+            'url'  => 'admin/contents',
+            'icon' => 'far fa-fw fa-file'
         ],
         [
             'text' => 'Пользователи',
