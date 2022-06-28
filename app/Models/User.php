@@ -49,7 +49,8 @@ class User extends Authenticatable implements MustVerifyEmail, CanResetPasswordC
         'email_verified_at' => 'datetime',
     ];
 
-    public function setPasswordAttribute($password){
+    public function setPasswordAttribute($password)
+    {
         $this->attributes['password'] = Hash::make($password);
     }
 

@@ -23,11 +23,13 @@ class Order extends Model
         'created_at' => 'datetime'
     ];
 
-    public function course(){
+    public function course()
+    {
         return $this->hasOne('App\Models\Course', 'id', 'course_id');
     }
 
-    public function user(){
+    public function user()
+    {
         return $this->hasOne('App\Models\User', 'id', 'user_id');
     }
 }
