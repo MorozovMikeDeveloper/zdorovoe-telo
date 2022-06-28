@@ -19,7 +19,6 @@
                     <li><a class="header-menu__link active" href="#" data-page="home-page">Главная</a></li>
                     <li><a class="header-menu__link" href="#" data-page="about-page">Обо мне</a></li>
                     <li><a class="header-menu__link" href="#" data-page="course-page">Курсы</a></li>
-                    <li><a class="header-menu__link" href="#" data-page="reviews-page">Отзывы</a></li>
                     @if(!Auth::check())
                     <li><a class="header-menu__link" href="{{ route('login_form') }}">Войти</a></li>
                     <li><a class="header-menu__link" href="{{ route('signup_form') }}">Регистрация</a></li>

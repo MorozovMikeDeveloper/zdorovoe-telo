@@ -108,15 +108,4 @@
         </div>
     </section>
 </div>
-<div class="page" id="reviews-page">
-    <section class="section section--gray h-100" id="about-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <div class="block-title my-5">Отзывы</div>
-                </div>
-            </div>
-        </div>
-    </section>
-</div>
 @endsection
