@@ -38,7 +38,7 @@
     <main>
         @yield('content')
     </main>
-    <footer class="text-center">© <span id="curryear"></span> Физиотерапевт Илья Денисов. Сайт создан <a
+    <footer class="text-center">© <span id="curryear"></span> Физиотерапевт Илья Щербаков. Сайт создан <a
             href="https://t.me/kekovina">@kekovina</a> и <a
             href="https://t.me/MorozovMike">@MorozovMike</a></footer>
     <div class="overlay"></div>

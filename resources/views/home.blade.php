@@ -10,7 +10,7 @@
         </div>
         <div class="title__text">
             <div>Илья
-                <br>Денисов
+                <br>Щербаков
             </div>
             <div class="mt-4">Физиотерапия
                 <br>в движении
@@ -69,7 +69,7 @@
                     <div class="row my-lg-4">
                         <div class="col-lg-4">
                             <div class="fi-block">Илья
-                                <br>Денисов
+                                <br>Щербаков
                             </div>
                         </div>
                         <div class="col-lg-8">
